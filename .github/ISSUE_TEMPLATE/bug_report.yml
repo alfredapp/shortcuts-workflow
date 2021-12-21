@@ -1,0 +1,32 @@
+name: Bug Report
+description: File a bug report
+body:
+  - type: input
+    attributes:
+      label: Workflow version
+      description: Open the Workflow in Alfred Preferences → click [𝓧] → Workflow Version
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Alfred version
+      description: In the top left corner of Alfred Preferences → General
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: macOS version
+      description: Click  on the menubar → About This Mac → Overview
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Debugger output
+      description: Open the Workflow in Alfred Preferences → click the bug icon → perform the failing action
+      render: alfred_debugger
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: More details
+      description: Explain what you did, what happened, and what you expected to happen
