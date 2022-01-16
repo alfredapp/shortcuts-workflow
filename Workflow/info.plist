@@ -6,11 +6,24 @@
 	<string>com.alfredapp.shortcuts</string>
 	<key>connections</key>
 	<dict>
+		<key>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>1536051B-9614-43F1-BAFF-69157E7507B5</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>BA85DFB6-430D-4198-BB43-D7C2754CBB51</string>
+				<string>E1CD853F-1331-41DD-9DB4-6050553D5C53</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -50,6 +63,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>802B7F25-AE44-4D1F-B585-F9C01B61A687</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -109,6 +135,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</key>
 		<array>
@@ -123,11 +159,24 @@
 				<false/>
 			</dict>
 		</array>
-		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
+		<key>E1CD853F-1331-41DD-9DB4-6050553D5C53</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>BA85DFB6-430D-4198-BB43-D7C2754CBB51</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E1CD853F-1331-41DD-9DB4-6050553D5C53</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -147,7 +196,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</string>
+				<string>802B7F25-AE44-4D1F-B585-F9C01B61A687</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
@@ -311,9 +360,9 @@ puts({ items: Script_filter_items }.to_json)</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>if [[ -n "${input_path}" ]]; then
-  /usr/bin/shortcuts run "${1}" --input-path "${input_path}"
+  /usr/bin/shortcuts run "$(pbpaste)" --input-path "${input_path}"
 else
-  /usr/bin/shortcuts run "${1}" "${options[@]}" &lt;&lt;&lt; "${argument}"
+  /usr/bin/shortcuts run "$(pbpaste)" &lt;&lt;&lt; "${argument}"
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -423,6 +472,25 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>E1CD853F-1331-41DD-9DB4-6050553D5C53</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<integer>0</integer>
 				<key>filetypes</key>
@@ -456,6 +524,25 @@ fi</string>
 			<string>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{clipboard:0}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</string>
+			<key>version</key>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -581,12 +668,31 @@ puts({ items: Script_filter_items }.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>802B7F25-AE44-4D1F-B585-F9C01B61A687</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>/usr/bin/shortcuts view "${1}"</string>
+				<string>/usr/bin/shortcuts view "$(pbpaste)"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -628,7 +734,7 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<key>note</key>
 			<string>Edit shortcut</string>
 			<key>xpos</key>
-			<integer>585</integer>
+			<integer>705</integer>
 			<key>ypos</key>
 			<integer>525</integer>
 		</dict>
@@ -663,6 +769,15 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<integer>620</integer>
 			<key>ypos</key>
 			<integer>400</integer>
+		</dict>
+		<key>802B7F25-AE44-4D1F-B585-F9C01B61A687</key>
+		<dict>
+			<key>note</key>
+			<string>Bypass NSTask decomposition</string>
+			<key>xpos</key>
+			<integer>540</integer>
+			<key>ypos</key>
+			<integer>525</integer>
 		</dict>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<dict>
@@ -705,6 +820,24 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<key>ypos</key>
 			<integer>235</integer>
 		</dict>
+		<key>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</key>
+		<dict>
+			<key>note</key>
+			<string>Restore clipboard</string>
+			<key>xpos</key>
+			<integer>1150</integer>
+			<key>ypos</key>
+			<integer>370</integer>
+		</dict>
+		<key>E1CD853F-1331-41DD-9DB4-6050553D5C53</key>
+		<dict>
+			<key>note</key>
+			<string>Bypass NSTask decomposition</string>
+			<key>xpos</key>
+			<integer>705</integer>
+			<key>ypos</key>
+			<integer>205</integer>
+		</dict>
 		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
 		<dict>
 			<key>note</key>
@@ -718,7 +851,7 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2021.1</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
