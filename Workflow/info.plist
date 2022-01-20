@@ -138,6 +138,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>AE721F32-3963-421C-9EF2-156DED2AA563</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</key>
 		<array>
 			<dict>
@@ -165,7 +178,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</string>
+				<string>AE721F32-3963-421C-9EF2-156DED2AA563</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -576,36 +589,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:shortcut}</string>
-						<key>matchcasesensitive</key>
-						<true/>
-						<key>matchmode</key>
-						<integer>0</integer>
-						<key>matchstring</key>
-						<string>{clipboard}</string>
-						<key>outputlabel</key>
-						<string>Not Modified</string>
-						<key>uid</key>
-						<string>DD0E7A4E-325F-417E-9A13-10BEF16FB693</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>Modified</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -687,6 +670,36 @@ puts({ items: Script_filter_items }.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{query}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>{var:shortcut}</string>
+						<key>outputlabel</key>
+						<string>Not Modified</string>
+						<key>uid</key>
+						<string>DD0E7A4E-325F-417E-9A13-10BEF16FB693</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Modified</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string>{var:shortcut}</string>
 				<key>passthroughargument</key>
@@ -721,6 +734,23 @@ puts({ items: Script_filter_items }.to_json)</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>6492FB28-292F-4EBA-AC97-1757CD7D9B1A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{clipboard}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>AE721F32-3963-421C-9EF2-156DED2AA563</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -835,9 +865,9 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<key>note</key>
 			<string>Do not restore clipboard if shortcut changed it</string>
 			<key>xpos</key>
-			<integer>1190</integer>
+			<integer>1215</integer>
 			<key>ypos</key>
-			<integer>360</integer>
+			<integer>390</integer>
 		</dict>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<dict>
@@ -890,6 +920,15 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<integer>745</integer>
 			<key>ypos</key>
 			<integer>370</integer>
+		</dict>
+		<key>AE721F32-3963-421C-9EF2-156DED2AA563</key>
+		<dict>
+			<key>note</key>
+			<string>Send keyboard contents downstream as {query}</string>
+			<key>xpos</key>
+			<integer>1115</integer>
+			<key>ypos</key>
+			<integer>400</integer>
 		</dict>
 		<key>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</key>
 		<dict>
@@ -947,7 +986,7 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2022.2</string>
+	<string>2022.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
