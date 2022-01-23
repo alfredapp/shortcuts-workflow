@@ -656,7 +656,7 @@ puts({ items: Script_filter_items }.to_json)</string>
 				<key>subtext</key>
 				<string>{query}</string>
 				<key>text</key>
-				<string>Give shortcut argument</string>
+				<string>Give {var:shortcut} argument</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -986,7 +986,7 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2022.3</string>
+	<string>2022.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
