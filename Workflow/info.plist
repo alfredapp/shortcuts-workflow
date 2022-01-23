@@ -358,7 +358,13 @@ Script_filter_items = Categorised.each_with_object([]) { |categorised, array|
 
   subtitle = lambda {
     return "Argument: #{ENV['argument']}" if ENV['argument']
-    return "Path: #{ENV['input_path']}" if ENV['input_path']
+
+    if ENV['input_paths']
+      split_paths = ENV['input_paths'].split("\t")
+      return "Paths: #{split_paths.join(', ')}" if split_paths.count &gt; 1
+      return "Path: #{ENV['input_paths']}"
+    end
+
     folder
   }.call
 
@@ -400,8 +406,9 @@ puts({ items: Script_filter_items }.to_json)</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if [[ -n "${input_path}" ]]; then
-  /usr/bin/shortcuts run "$(pbpaste)" --input-path "${input_path}"
+				<string>if [[ -n "${input_paths}" ]]; then
+  IFS=$'\t\n' read -d '' -ra path_array &lt;&lt;&lt; "${input_paths}"
+  /usr/bin/shortcuts run "$(pbpaste)" --input-path "${path_array[@]}"
 else
   /usr/bin/shortcuts run "$(pbpaste)" &lt;&lt;&lt; "${argument}"
 fi</string>
@@ -533,7 +540,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>acceptsmulti</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>filetypes</key>
 				<array/>
 				<key>name</key>
@@ -555,7 +562,7 @@ fi</string>
 				<false/>
 				<key>variables</key>
 				<dict>
-					<key>input_path</key>
+					<key>input_paths</key>
 					<string>{query}</string>
 				</dict>
 			</dict>
@@ -983,10 +990,8 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<integer>205</integer>
 		</dict>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>2022.4</string>
+	<string>2022.5</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
