@@ -326,58 +326,78 @@
 				<key>runningsubtext</key>
 				<string>Getting shortcutsâ€¦</string>
 				<key>script</key>
-				<string>require 'json'
-require 'open3'
+				<string>// Get STDOUT from command, as array split from newlines, without empty elements
+function linesFromCommand(arguments) {
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
 
-Categorised = lambda {
-  list = []
-  uncategorised = Open3.capture2('/usr/bin/shortcuts', 'list').first.split("\n")
-  folders = Open3.capture2('/usr/bin/shortcuts', 'list', '--folders').first.split("\n")
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
+  task.arguments = arguments.slice(1)
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
 
-  folders.each do |folder|
-    folder_shortcuts = Open3.capture2(
-      '/usr/bin/shortcuts', 'list', '--folder-name', folder
-    ).first.split("\n")
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
 
-    folder_shortcuts.each do |shortcut|
-      uncategorised.delete(shortcut)
-      list.push([shortcut, folder])
-    end
-  end
-
-  uncategorised.each do |shortcut|
-    list.push([shortcut, ''])
-  end
-
-  list
-}.call
-
-Script_filter_items = Categorised.each_with_object([]) { |categorised, array|
-  shortcut = categorised[0]
-  folder = categorised[1]
-
-  subtitle = lambda {
-    return "Argument: #{ENV['argument']}" if ENV['argument']
-
-    if ENV['input_paths']
-      split_paths = ENV['input_paths'].split("\t")
-      return "Paths: #{split_paths.join(', ')}" if split_paths.count &gt; 1
-      return "Path: #{ENV['input_paths']}"
-    end
-
-    folder
-  }.call
-
-  array.push(
-    uid: "#{shortcut} #{folder}",
-    title: shortcut,
-    subtitle: subtitle,
-    arg: shortcut,
-    match: "#{shortcut} #{folder}"
-  )
+  return stringOut.split("\n").filter(line =&gt; line)
 }
 
-puts({ items: Script_filter_items }.to_json)</string>
+// Array of arrays, listing shortcuts and their directories
+const shortcutsList = (function() {
+  let list = []
+  let uncategorised = linesFromCommand(["/usr/bin/shortcuts", "list"])
+  const folders = linesFromCommand(["/usr/bin/shortcuts", "list", "--folders"])
+
+  // Add shortcuts with folders to final list
+  folders
+    .forEach(folder =&gt; { // For each folder
+      linesFromCommand(["/usr/bin/shortcuts", "list", "--folder-name", folder])
+        .forEach(shortcut =&gt; { // For each shortcut in folder
+          uncategorised.splice(uncategorised.indexOf(shortcut), 1) // Remove from uncategorised
+          list.push([shortcut, folder])
+        })
+    })
+
+  // Add folderless shortcuts to final list
+  uncategorised.forEach(shortcut =&gt; list.push([shortcut, ""]))
+
+  return list
+})()
+
+// Build items
+const sfItems = shortcutsList.map(categorised =&gt; {
+  const shortcut = categorised[0]
+  const folder = categorised[1]
+
+  const subtitle = (function() {
+    // If an argument has been specified
+    const envArgument = $.NSProcessInfo.processInfo.environment.objectForKey("argument").js
+    if (envArgument) return "Argument: " + envArgument
+
+    // If input paths have been specificed
+    const envInputPaths = $.NSProcessInfo.processInfo.environment.objectForKey("input_paths").js
+
+    if (envInputPaths) {
+      const splitPaths = envInputPaths.split("\t")
+      if (splitPaths.length &gt; 1) return "Paths: " + splitPaths.join(", ")
+      return "Path: " + splitPaths[0]
+    }
+
+    // Else return folder name
+    return folder
+  })()
+
+  return {
+    "uid": shortcut + " " + folder,
+    "title": shortcut,
+    "subtitle": subtitle,
+    "arg": shortcut,
+    "match": shortcut + " " + folder
+  }
+})
+
+// Output JSON
+JSON.stringify({ "items": sfItems })</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -387,7 +407,7 @@ puts({ items: Script_filter_items }.to_json)</string>
 				<key>title</key>
 				<string>Shortcuts</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>7</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -931,7 +951,7 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 		<key>AE721F32-3963-421C-9EF2-156DED2AA563</key>
 		<dict>
 			<key>note</key>
-			<string>Send keyboard contents downstream as {query}</string>
+			<string>Send clipboard contents downstream as {query}</string>
 			<key>xpos</key>
 			<integer>1115</integer>
 			<key>ypos</key>
@@ -990,8 +1010,10 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<integer>205</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>2022.5</string>
+	<string>2022.6</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
