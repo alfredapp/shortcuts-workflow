@@ -7,10 +7,12 @@
 	<key>connections</key>
 	<dict>
 		<key>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</key>
+		<array/>
+		<key>1323F48F-E437-45DD-B8A6-33410D2A376D</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</string>
+				<string>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -23,7 +25,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E1CD853F-1331-41DD-9DB4-6050553D5C53</string>
+				<string>FA9FFB07-7249-47A4-A6CE-FB08B23064F9</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -41,21 +43,6 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>sourceoutputuid</key>
-				<string>DD0E7A4E-325F-417E-9A13-10BEF16FB693</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -78,32 +65,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>75EB35D0-3B2C-48E5-AB63-E6E55C88F7DA</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>E1CD853F-1331-41DD-9DB4-6050553D5C53</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>802B7F25-AE44-4D1F-B585-F9C01B61A687</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -138,19 +99,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>AE721F32-3963-421C-9EF2-156DED2AA563</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</key>
 		<array>
 			<dict>
@@ -176,16 +124,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>AE721F32-3963-421C-9EF2-156DED2AA563</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</key>
 		<array>
@@ -200,24 +138,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>E1CD853F-1331-41DD-9DB4-6050553D5C53</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>BA85DFB6-430D-4198-BB43-D7C2754CBB51</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>75EB35D0-3B2C-48E5-AB63-E6E55C88F7DA</string>
+				<string>FA9FFB07-7249-47A4-A6CE-FB08B23064F9</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -237,11 +162,24 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>802B7F25-AE44-4D1F-B585-F9C01B61A687</string>
+				<string>1323F48F-E437-45DD-B8A6-33410D2A376D</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Edit shortcut</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FA9FFB07-7249-47A4-A6CE-FB08B23064F9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BA85DFB6-430D-4198-BB43-D7C2754CBB51</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -297,6 +235,156 @@
 			<string>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>adduuid</key>
+				<false/>
+				<key>allowemptyfiles</key>
+				<false/>
+				<key>createintermediatefolders</key>
+				<false/>
+				<key>filename</key>
+				<string>/tmp/com.alfredapp.shortcuts.workflowname.txt</string>
+				<key>filetext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>relativepathmode</key>
+				<integer>0</integer>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.writefile</string>
+			<key>uid</key>
+			<string>FA9FFB07-7249-47A4-A6CE-FB08B23064F9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/alfredapp/shortcuts-workflow/master/Workflow/info.plist"
+readonly workflow_url="alfredapp/shortcuts-workflow"
+readonly download_type='github_release'
+readonly frequency_check='4'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
+    return
+  fi
+
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" == "${remote_version}" ]]; then
+    touch "${local_info_plist}" # Reset timer by touching local file
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download pageâ€¦'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installingâ€¦'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>005F1932-2C11-4E8E-823D-099B3FC1C00D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly tmp_file="${1}"
+
+if [[ -n "${input_paths}" ]]; then
+  IFS=$'\t\n' read -d '' -ra path_array &lt;&lt;&lt; "${input_paths}"
+  /usr/bin/shortcuts run "$(&lt; "${tmp_file}")" --input-path "${path_array[@]}"
+else
+  /usr/bin/shortcuts run "$(&lt; "${tmp_file}")" &lt;&lt;&lt; "${argument}"
+fi
+
+rm "${tmp_file}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BA85DFB6-430D-4198-BB43-D7C2754CBB51</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -421,144 +509,6 @@ JSON.stringify({ "items": sfItems })</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>if [[ -n "${input_paths}" ]]; then
-  IFS=$'\t\n' read -d '' -ra path_array &lt;&lt;&lt; "${input_paths}"
-  /usr/bin/shortcuts run "$(pbpaste)" --input-path "${path_array[@]}"
-else
-  /usr/bin/shortcuts run "$(pbpaste)" &lt;&lt;&lt; "${argument}"
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>BA85DFB6-430D-4198-BB43-D7C2754CBB51</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
-readonly remote_info_plist="https://raw.githubusercontent.com/alfredapp/shortcuts-workflow/master/Workflow/info.plist"
-readonly workflow_url="alfredapp/shortcuts-workflow"
-readonly download_type='github_release'
-readonly frequency_check='4'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  local -r notificator="$(find . -type d -name 'Notificator.app')"
-  if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
-
-  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-    return
-  fi
-
-  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" == "${remote_version}" ]]; then
-    touch "${local_info_plist}" # Reset timer by touching local file
-    exit 0
-  fi
-
-  if [[ "${download_type}" == 'page' ]]; then
-    notification 'Opening download pageâ€¦'
-    open "${workflow_url}"
-    exit 0
-  fi
-
-  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
-
-  if url_exists "${download_url}"; then
-    notification 'Downloading and installingâ€¦'
-    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
-    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-  else
-    abort "'workflow_url' (${download_url}) appears to not be reachable."
-  fi
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>005F1932-2C11-4E8E-823D-099B3FC1C00D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>E1CD853F-1331-41DD-9DB4-6050553D5C53</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<integer>1</integer>
 				<key>filetypes</key>
@@ -596,20 +546,19 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>subtext</key>
 				<string>{query}</string>
-				<key>passthroughargument</key>
+				<key>text</key>
+				<string>Give {var:shortcut} argument</string>
+				<key>withspace</key>
 				<false/>
-				<key>variables</key>
-				<dict>
-					<key>shortcut</key>
-					<string>{query}</string>
-				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>75EB35D0-3B2C-48E5-AB63-E6E55C88F7DA</string>
+			<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -678,55 +627,6 @@ puts({ items: Script_filter_items }.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>{query}</string>
-				<key>text</key>
-				<string>Give {var:shortcut} argument</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{query}</string>
-						<key>matchcasesensitive</key>
-						<true/>
-						<key>matchmode</key>
-						<integer>0</integer>
-						<key>matchstring</key>
-						<string>{var:shortcut}</string>
-						<key>outputlabel</key>
-						<string>Not Modified</string>
-						<key>uid</key>
-						<string>DD0E7A4E-325F-417E-9A13-10BEF16FB693</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>Modified</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string>{var:shortcut}</string>
 				<key>passthroughargument</key>
@@ -767,57 +667,29 @@ puts({ items: Script_filter_items }.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>{clipboard}</string>
-				<key>passthroughargument</key>
+				<key>adduuid</key>
 				<false/>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>AE721F32-3963-421C-9EF2-156DED2AA563</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
+				<key>allowemptyfiles</key>
 				<false/>
-				<key>clipboardtext</key>
+				<key>createintermediatefolders</key>
+				<false/>
+				<key>filename</key>
+				<string>/tmp/com.alfredapp.shortcuts.workflowname.txt</string>
+				<key>filetext</key>
 				<string>{query}</string>
 				<key>ignoredynamicplaceholders</key>
 				<false/>
-				<key>transient</key>
-				<true/>
+				<key>relativepathmode</key>
+				<integer>0</integer>
+				<key>type</key>
+				<integer>1</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
+			<string>alfred.workflow.output.writefile</string>
 			<key>uid</key>
-			<string>802B7F25-AE44-4D1F-B585-F9C01B61A687</string>
+			<string>1323F48F-E437-45DD-B8A6-33410D2A376D</string>
 			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{clipboard:0}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</string>
-			<key>version</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -827,13 +699,17 @@ puts({ items: Script_filter_items }.to_json)</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>/usr/bin/shortcuts view "$(pbpaste)"</string>
+				<string>readonly tmp_file="${1}"
+
+/usr/bin/shortcuts view "$(&lt; "${tmp_file}")"
+
+rm "${tmp_file}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -873,6 +749,15 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<key>ypos</key>
 			<integer>525</integer>
 		</dict>
+		<key>1323F48F-E437-45DD-B8A6-33410D2A376D</key>
+		<dict>
+			<key>note</key>
+			<string>Bypass NSTask decomposition</string>
+			<key>xpos</key>
+			<integer>540</integer>
+			<key>ypos</key>
+			<integer>525</integer>
+		</dict>
 		<key>1536051B-9614-43F1-BAFF-69157E7507B5</key>
 		<dict>
 			<key>xpos</key>
@@ -886,15 +771,6 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<integer>230</integer>
 			<key>ypos</key>
 			<integer>70</integer>
-		</dict>
-		<key>1EB0B7A2-D82C-41E0-8B29-1CEC11895BE5</key>
-		<dict>
-			<key>note</key>
-			<string>Do not restore clipboard if shortcut changed it</string>
-			<key>xpos</key>
-			<integer>1215</integer>
-			<key>ypos</key>
-			<integer>390</integer>
 		</dict>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<dict>
@@ -914,24 +790,6 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<key>ypos</key>
 			<integer>400</integer>
 		</dict>
-		<key>75EB35D0-3B2C-48E5-AB63-E6E55C88F7DA</key>
-		<dict>
-			<key>note</key>
-			<string>Save shortcut name for later comparison</string>
-			<key>xpos</key>
-			<integer>620</integer>
-			<key>ypos</key>
-			<integer>235</integer>
-		</dict>
-		<key>802B7F25-AE44-4D1F-B585-F9C01B61A687</key>
-		<dict>
-			<key>note</key>
-			<string>Bypass NSTask decomposition</string>
-			<key>xpos</key>
-			<integer>540</integer>
-			<key>ypos</key>
-			<integer>525</integer>
-		</dict>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<dict>
 			<key>note</key>
@@ -947,15 +805,6 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<integer>745</integer>
 			<key>ypos</key>
 			<integer>370</integer>
-		</dict>
-		<key>AE721F32-3963-421C-9EF2-156DED2AA563</key>
-		<dict>
-			<key>note</key>
-			<string>Send clipboard contents downstream as {query}</string>
-			<key>xpos</key>
-			<integer>1115</integer>
-			<key>ypos</key>
-			<integer>400</integer>
 		</dict>
 		<key>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</key>
 		<dict>
@@ -982,24 +831,6 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<key>ypos</key>
 			<integer>235</integer>
 		</dict>
-		<key>D89B0630-3FCD-4943-9C67-AECAD3BDAEA7</key>
-		<dict>
-			<key>note</key>
-			<string>Restore clipboard</string>
-			<key>xpos</key>
-			<integer>1360</integer>
-			<key>ypos</key>
-			<integer>525</integer>
-		</dict>
-		<key>E1CD853F-1331-41DD-9DB4-6050553D5C53</key>
-		<dict>
-			<key>note</key>
-			<string>Bypass NSTask decomposition</string>
-			<key>xpos</key>
-			<integer>745</integer>
-			<key>ypos</key>
-			<integer>205</integer>
-		</dict>
 		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
 		<dict>
 			<key>note</key>
@@ -1009,11 +840,20 @@ To run a shortcut with an argument, use the Universal Action or invoke it with â
 			<key>ypos</key>
 			<integer>205</integer>
 		</dict>
+		<key>FA9FFB07-7249-47A4-A6CE-FB08B23064F9</key>
+		<dict>
+			<key>note</key>
+			<string>Bypass NSTask decomposition</string>
+			<key>xpos</key>
+			<integer>745</integer>
+			<key>ypos</key>
+			<integer>205</integer>
+		</dict>
 	</dict>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2022.6</string>
+	<string>2022.7</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
