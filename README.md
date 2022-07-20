@@ -3,6 +3,7 @@
 Run installled macOS shortcuts
 
 <a href='https://github.com/alfredapp/shortcuts-workflow/releases/latest/download/Shortcuts.alfredworkflow'>⤓ Download Workflow</a>
+
 <a href='https://github.com/alfredapp/shortcuts-workflow/releases/download/2022.7/Shortcuts.alfredworkflow'>⤓ Download Alfred 4 Workflow</a>
 
 ## About
