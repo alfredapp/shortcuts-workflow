@@ -17,3 +17,5 @@ To run a shortcut with an argument, use the Universal Action or invoke it with �
 ⌥↩ opens the the shortcut for editing.
 
 <a href='https://github.com/alfredapp/shortcuts-workflow/releases/latest/download/Shortcuts.alfredworkflow'>⤓ Download Workflow</a>
+
+<a href='https://github.com/alfredapp/shortcuts-workflow/releases/download/2022.7/Shortcuts.alfredworkflow'>⤓ Download Alfred 4 Workflow</a>
