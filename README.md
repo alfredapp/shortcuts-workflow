@@ -4,8 +4,6 @@ Run installled macOS shortcuts
 
 <a href='https://github.com/alfredapp/shortcuts-workflow/releases/latest/download/Shortcuts.alfredworkflow'>⤓ Download Workflow</a>
 
-> On Alfred 4 use <a href='https://github.com/alfredapp/shortcuts-workflow/releases/download/2022.8/Shortcuts.alfredworkflow'>alternative link</a>
-
 ## About
 
 Run `sc` to list all your shortcuts or `scd` to quickly filter them by folder name. Press ↩ to action.
@@ -14,8 +12,6 @@ Run `sc` to list all your shortcuts or `scd` to quickly filter them by folder na
 
 To run a shortcut with an argument, use the Universal Action or invoke it with ⌘↩. Use the File Action to run a shortcut on a file.
 
-⌥↩ opens the the shortcut for editing.
+⌥↩ opens the shortcut for editing.
 
 <a href='https://github.com/alfredapp/shortcuts-workflow/releases/latest/download/Shortcuts.alfredworkflow'>⤓ Download Workflow</a>
-
-> On Alfred 4 use <a href='https://github.com/alfredapp/shortcuts-workflow/releases/download/2022.8/Shortcuts.alfredworkflow'>alternative link</a>

@@ -337,6 +337,8 @@
 			<dict>
 				<key>delimiter</key>
 				<string>	</string>
+				<key>discardemptyarguments</key>
+				<false/>
 				<key>outputas</key>
 				<integer>1</integer>
 				<key>trimarguments</key>
@@ -904,7 +906,7 @@ rm "${tmp_file}"</string>
 
 To run a shortcut with an argument, use the Universal Action or invoke it with ⌘↩. Use the File Action to run a shortcut on a file.
 
-⌥↩ opens the the shortcut for editing.</string>
+⌥↩ opens the shortcut for editing.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</key>
@@ -1054,10 +1056,8 @@ To run a shortcut with an argument, use the Universal Action or invoke it with �
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>2022.9</string>
+	<string>2022.10</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
