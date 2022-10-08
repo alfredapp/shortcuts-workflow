@@ -369,7 +369,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>sc</string>
+				<string>{var:all_shortcuts_keyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -798,7 +798,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>scd</string>
+				<string>{var:shortcuts_folders_keyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -900,13 +900,17 @@ rm "${tmp_file}"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Run `sc` to list all your shortcuts or `scd` to quickly filter them by folder name. Press ↩ to action.
+	<string>## Usage
+
+Run the All Shortcuts Keyword (defautl: `sc`) to list all your shortcuts or the Shorcut Folders Keyword (default: `scd`) to filter by folder name.
 
 ![Alfred search for sc](images/about/sc.png)
 
-To run a shortcut with an argument, use the Universal Action or invoke it with ⌘↩. Use the File Action to run a shortcut on a file.
+* ↩: Run the shortcut.
+* ⌘↩: Run the shortcut with an argument.
+* ⌥↩: Open the shortcut for editing.
 
-⌥↩ opens the shortcut for editing.</string>
+Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to give an argument.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</key>
@@ -1055,9 +1059,52 @@ To run a shortcut with an argument, use the Universal Action or invoke it with �
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
-	<array/>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>sc</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>All Shortcuts Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>all_shortcuts_keyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>scd</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Shorcut Folders Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>shortcuts_folders_keyword</string>
+		</dict>
+	</array>
 	<key>version</key>
-	<string>2022.10</string>
+	<string>2022.11</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
