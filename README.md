@@ -4,6 +4,8 @@ Run installed macOS shortcuts
 
 <a href='https://alfred.app/workflows/alfredapp/shortcuts'>⤓ Install on the Alfred Gallery</a>
 
+> On Alfred 4 use <a href='https://github.com/alfredapp/shortcuts-workflow/releases/download/2022.8/Shortcuts.alfredworkflow'>alternative link</a>
+
 ## Usage
 
 Search all your shortcuts via the All Shortcuts Keyword (default: `sc`) or search by folder name via the Shorcut Folders Keyword (default: `scd`).
