@@ -1,14 +1,12 @@
 # <img src='Workflow/icon.png' width='45' align='center' alt='icon'> Shortcuts Alfred Workflow
 
-Run installled macOS shortcuts
+Run installed macOS shortcuts
 
-<a href='https://github.com/alfredapp/shortcuts-workflow/releases/latest/download/Shortcuts.alfredworkflow'>⤓ Download Workflow</a>
-
-> On Alfred 4 use <a href='https://github.com/alfredapp/shortcuts-workflow/releases/download/2022.8/Shortcuts.alfredworkflow'>alternative link</a>
+<a href='https://alfred.app/workflows/alfredapp/shortcuts'>⤓ Install on the Alfred Gallery</a>
 
 ## Usage
 
-Run the All Shortcuts Keyword (defautl: `sc`) to list all your shortcuts or the Shorcut Folders Keyword (default: `scd`) to filter by folder name.
+Search all your shortcuts via the All Shortcuts Keyword (default: `sc`) or search by folder name via the Shorcut Folders Keyword (default: `scd`).
 
 ![Alfred search for sc](Workflow/images/about/sc.png)
 

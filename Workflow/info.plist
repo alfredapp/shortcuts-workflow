@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.alfredapp.shortcuts</string>
+	<string>com.alfredapp.vitor.shortcuts</string>
 	<key>connections</key>
 	<dict>
 		<key>0A77AD31-D9B7-4FE5-869D-ADAB4C03C845</key>
@@ -202,18 +202,7 @@
 			</dict>
 		</array>
 		<key>BFCDF55C-5BEF-4517-BDCB-4561FFAEA81B</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>F0916DDA-3E78-43CC-82B8-250F87B06233</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</key>
 		<array>
 			<dict>
@@ -255,7 +244,7 @@
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Edit shortcut</string>
+				<string>Edit Shortcut</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -264,7 +253,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Run installled macOS shortcuts</string>
+	<string>Run installed macOS shortcuts</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -492,101 +481,6 @@ JSON.stringify({ "items": sfItems })</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string># Special values for OneUpdater reuse
-readonly workflow_webaddress="$(/usr/libexec/PlistBuddy -c 'print webaddress' './info.plist')"
-readonly workflow_repo="$(basename "$(dirname "${workflow_webaddress}")")/$(basename "${workflow_webaddress}")"
-
-# THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
-readonly remote_info_plist="${workflow_webaddress}/raw/main/Workflow/info.plist"
-readonly workflow_url="${workflow_repo}"
-readonly download_type='github_release'
-readonly frequency_check='4'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  local -r notificator="$(find . -type d -name 'Notificator.app')"
-  if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
-
-  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-    return
-  fi
-
-  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" == "${remote_version}" ]]; then
-    touch "${local_info_plist}" # Reset timer by touching local file
-    exit 0
-  fi
-
-  if [[ "${download_type}" == 'page' ]]; then
-    notification 'Opening download page…'
-    open "${workflow_url}"
-    exit 0
-  fi
-
-  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
-
-  if url_exists "${download_url}"; then
-    notification 'Downloading and installing…'
-    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
-    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-  else
-    abort "'workflow_url' (${download_url}) appears to not be reachable."
-  fi
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F0916DDA-3E78-43CC-82B8-250F87B06233</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>inputmode</key>
 				<integer>-1</integer>
 				<key>outputmode</key>
@@ -668,6 +562,26 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>input_paths</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
 				<string>{query}</string>
 				<key>passthroughargument</key>
 				<false/>
@@ -703,26 +617,6 @@ fi</string>
 			<string>alfred.workflow.utility.json</string>
 			<key>uid</key>
 			<string>25855119-4AFB-4E7F-85B6-368A1A69EB9B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>input_paths</key>
-					<string>{query}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -852,15 +746,15 @@ puts({ items: Script_filter_items }.to_json)</string>
 				<key>allowemptyfiles</key>
 				<false/>
 				<key>createintermediatefolders</key>
-				<false/>
+				<true/>
 				<key>filename</key>
-				<string>/tmp/com.alfredapp.shortcuts.workflowname.txt</string>
+				<string>workflow_name.txt</string>
 				<key>filetext</key>
 				<string>{var:shortcut}</string>
 				<key>ignoredynamicplaceholders</key>
 				<false/>
 				<key>relativepathmode</key>
-				<integer>0</integer>
+				<integer>-1</integer>
 				<key>type</key>
 				<integer>1</integer>
 			</dict>
@@ -902,13 +796,13 @@ rm "${tmp_file}"</string>
 	<key>readme</key>
 	<string>## Usage
 
-Run the All Shortcuts Keyword (defautl: `sc`) to list all your shortcuts or the Shorcut Folders Keyword (default: `scd`) to filter by folder name.
+Search all your shortcuts via the All Shortcuts Keyword (default: `sc`) or search by folder name via the Shorcut Folders Keyword (default: `scd`).
 
 ![Alfred search for sc](images/about/sc.png)
 
-* ↩: Run the shortcut.
-* ⌘↩: Run the shortcut with an argument.
-* ⌥↩: Open the shortcut for editing.
+* &lt;kbd&gt;↩&lt;/kbd&gt;: Run the shortcut.
+* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Run the shortcut with an argument.
+* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Open the shortcut for editing.
 
 Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to give an argument.</string>
 	<key>uidata</key>
@@ -1046,17 +940,6 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 			<key>ypos</key>
 			<real>205</real>
 		</dict>
-		<key>F0916DDA-3E78-43CC-82B8-250F87B06233</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<real>1390</real>
-			<key>ypos</key>
-			<real>205</real>
-		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array>
@@ -1104,7 +987,7 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2022.11</string>
+	<string>2022.12</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
