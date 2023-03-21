@@ -71,6 +71,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>4997C1F9-CB10-4F2D-9932-212E11D60938</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>866AE316-D3A4-4781-8E61-4A2704FE4996</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<array>
 			<dict>
@@ -139,6 +152,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>566F4FB1-471E-4356-AF50-6A47EBC49EC5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>866AE316-D3A4-4781-8E61-4A2704FE4996</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -243,6 +269,16 @@
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Edit Shortcut</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4997C1F9-CB10-4F2D-9932-212E11D60938</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string>Force Cache Update</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -385,17 +421,40 @@
 				<key>runningsubtext</key>
 				<string>Getting shortcuts…</string>
 				<key>script</key>
-				<string>function envVar(varName) {
+				<string>// Helpers
+function envVar(varName) {
   return $.NSProcessInfo.processInfo.environment.objectForKey(varName).js
 }
 
+function makeFolder(path) {
+  $.NSFileManager
+    .defaultManager
+    .createDirectoryAtPathWithIntermediateDirectoriesAttributesError(
+      path,
+      true, undefined, undefined
+    )
+}
+
+function readFile(path) {
+  const data = $.NSFileManager.defaultManager.contentsAtPath(path)
+  const string = $.NSString.alloc.initWithDataEncoding(data, $.NSUTF8StringEncoding).js
+  return string
+}
+
+function writeFile(path, text) {
+  $.NSString
+    .alloc
+    .initWithUTF8String(text)
+    .writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, undefined)
+}
+
 // Get STDOUT from command, as array split from newlines, without empty elements
-function linesFromCommand(arguments) {
+function shortcutsCommand(...arguments) {
   const task = $.NSTask.alloc.init
   const stdout = $.NSPipe.pipe
 
-  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
-  task.arguments = arguments.slice(1)
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath("/usr/bin/shortcuts")
+  task.arguments = arguments
   task.standardOutput = stdout
   task.launchAndReturnError(false)
 
@@ -405,74 +464,121 @@ function linesFromCommand(arguments) {
   return stringOut.split("\n").filter(line =&gt; line)
 }
 
+// Cache Helpers
+const cacheMinutes = 5
+const cachePath = `${envVar("alfred_workflow_cache")}/cache.json`
+
+function cacheExist() {
+  return $.NSFileManager.defaultManager.fileExistsAtPath(cachePath)
+}
+
+function oldCache(ttlMinutes) {
+  const ttl = ttlMinutes * 60 * 1000 // Milliseconds
+  const currentTime = new Date().getTime()
+  const cacheTime = parseInt(envVar("cache_age"))
+
+  if (ttl + cacheTime &gt; currentTime) return false
+  return true
+}
+
+function buildCache() {
 // Array of arrays, listing shortcuts and their directories
-const shortcutsList = (function() {
-  let list = []
-  let uncategorised = linesFromCommand(["/usr/bin/shortcuts", "list"])
-  const folders = linesFromCommand(["/usr/bin/shortcuts", "list", "--folders"])
+  const shortcutsList = (function() {
+    let list = []
+    let uncategorised = shortcutsCommand("list")
+    const folders = shortcutsCommand("list", "--folders")
 
-  // Add shortcuts with folders to final list
-  folders
-    .forEach(folder =&gt; { // For each folder
-      linesFromCommand(["/usr/bin/shortcuts", "list", "--folder-name", folder])
-        .forEach(shortcut =&gt; { // For each shortcut in folder
-          uncategorised.splice(uncategorised.indexOf(shortcut), 1) // Remove from uncategorised
-          list.push([shortcut, folder])
-        })
-    })
+    // Add shortcuts with folders to final list
+    folders
+      .forEach(folder =&gt; { // For each folder
+        shortcutsCommand("list", "--folder-name", folder)
+          .forEach(shortcut =&gt; { // For each shortcut in folder
+            uncategorised.splice(uncategorised.indexOf(shortcut), 1) // Remove from uncategorised
+            list.push([shortcut, folder])
+          })
+      })
 
-  // Add folderless shortcuts to final list
-  uncategorised.forEach(shortcut =&gt; list.push([shortcut, ""]))
+    // Add folderless shortcuts to final list
+    uncategorised.forEach(shortcut =&gt; list.push([shortcut, ""]))
 
-  return list
-})()
-
-// Build items
-const sfItems = shortcutsList.map(categorised =&gt; {
-  const shortcut = categorised[0]
-  const folder = categorised[1]
-
-  const inputType = (function() {
-    // If input paths have been specificed
-    const envInputPaths = envVar("input_paths")
-
-    if (envInputPaths) {
-      const inputPaths = envInputPaths.split("\t")
-      const pathsString = inputPaths.join("\n")
-
-      return {
-        subtitle: inputPaths.length &gt; 1 ? "Paths: " + pathsString : "Path: " + pathsString,
-        mods: { cmd: { valid: false, subtitle: "Input already set: " + pathsString } }
-      }
-    }
-
-    // If an argument has been specified
-    const envArgument = envVar("argument")
-
-    if (envArgument) return {
-      subtitle: "Argument: " + envArgument,
-      mods: { cmd: { valid: false, subtitle: "Input already set: " + envArgument } }
-    }
-
-    // Else return folder name and allow new arguments
-    return {
-      subtitle: folder,
-      mods: { cmd: { subtitle: "Run with argument" } }
-    }
+    return list
   })()
 
-  return {
-    variables: { shortcut: shortcut },
-    uid: shortcut + " " + folder,
-    title: shortcut,
-    subtitle: inputType.subtitle,
-    mods: inputType.mods,
-    match: shortcut + " " + folder
-  }
-})
+  // Build items
+  const sfItems = shortcutsList.map(categorised =&gt; {
+    const shortcut = categorised[0]
+    const folder = categorised[1]
 
-// Output JSON
-JSON.stringify({ "items": sfItems })</string>
+    const inputType = (function() {
+      // If input paths have been specificed
+      const envInputPaths = envVar("input_paths")
+
+      if (envInputPaths) {
+        const inputPaths = envInputPaths.split("\t")
+        const pathsString = inputPaths.join("\n")
+
+        return {
+          subtitle: inputPaths.length &gt; 1 ? "Paths: " + pathsString : "Path: " + pathsString,
+          mods: { cmd: { valid: false, subtitle: "Input already set: " + pathsString } }
+        }
+      }
+
+      // If an argument has been specified
+      const envArgument = envVar("argument")
+
+      if (envArgument) return {
+        subtitle: "Argument: " + envArgument,
+        mods: { cmd: { valid: false, subtitle: "Input already set: " + envArgument } }
+      }
+
+      // Else return folder name and allow new arguments
+      return {
+        subtitle: folder,
+        mods: { cmd: { subtitle: "Run with argument" } }
+      }
+    })()
+
+    return {
+      variables: { shortcut: shortcut },
+      uid: shortcut + " " + folder,
+      title: shortcut,
+      subtitle: inputType.subtitle,
+      mods: inputType.mods,
+      match: shortcut + " " + folder
+    }
+  })
+
+  // Build JSONs
+  const nowJSON = JSON.stringify({ items: sfItems })
+
+  const cacheJSON = JSON.stringify({
+    variables: { cache_age: new Date().getTime() },
+    rerun: 0.1,
+    items: sfItems
+  })
+
+  // Write cache
+  makeFolder(envVar("alfred_workflow_cache"))
+  writeFile(cachePath, cacheJSON)
+
+  // Output result
+  return nowJSON
+}
+
+// Main
+function run() {
+  // No cache, build it
+  if (!cacheExist()) return buildCache()
+
+  // Cache never loaded, load from disk for instant results
+  if (!envVar("cache_age")) return readFile(cachePath)
+
+  // Old cache, rebuild
+  if (oldCache(cacheMinutes)) return buildCache()
+
+  // Recent cache, load from disk
+  return readFile(cachePath)
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -485,6 +591,11 @@ JSON.stringify({ "items": sfItems })</string>
 				<integer>7</integer>
 				<key>withspace</key>
 				<true/>
+			</dict>
+			<key>inboundconfig</key>
+			<dict>
+				<key>externalid</key>
+				<string>list_shortcuts</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -765,6 +876,57 @@ puts({ items: Script_filter_items }.to_json)</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>tasksettings</key>
+				<dict/>
+				<key>taskuid</key>
+				<string>com.alfredapp.automation.core/files-and-folders/path.trash</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.automation.task</string>
+			<key>uid</key>
+			<string>866AE316-D3A4-4781-8E61-4A2704FE4996</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>list_shortcuts</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{const:alfred_workflow_cache}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>4997C1F9-CB10-4F2D-9932-212E11D60938</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Usage
@@ -777,7 +939,9 @@ Search all your shortcuts via the All Shortcuts Keyword (default: `sc`) or searc
 * &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Run the shortcut with an argument.
 * &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Open the shortcut for editing.
 
-Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to give an argument.</string>
+Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to give an argument.
+
+The list of shortcuts is cached for faster results. An immediate cache rebuild can be forced with &lt;kbd&gt;fn&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;.</string>
 	<key>uidata</key>
 	<dict>
 		<key>1128D030-5A3C-43C0-8B79-84EE063E2F1C</key>
@@ -817,6 +981,13 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 			<key>ypos</key>
 			<real>235</real>
 		</dict>
+		<key>4997C1F9-CB10-4F2D-9932-212E11D60938</key>
+		<dict>
+			<key>xpos</key>
+			<real>480</real>
+			<key>ypos</key>
+			<real>690</real>
+		</dict>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<dict>
 			<key>note</key>
@@ -825,6 +996,13 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 			<real>50</real>
 			<key>ypos</key>
 			<real>370</real>
+		</dict>
+		<key>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</key>
+		<dict>
+			<key>xpos</key>
+			<real>765</real>
+			<key>ypos</key>
+			<real>660</real>
 		</dict>
 		<key>54C3747A-A884-4018-BAD0-8D3926DDBCE9</key>
 		<dict>
@@ -846,6 +1024,13 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 			<real>935</real>
 			<key>ypos</key>
 			<real>165</real>
+		</dict>
+		<key>866AE316-D3A4-4781-8E61-4A2704FE4996</key>
+		<dict>
+			<key>xpos</key>
+			<real>580</real>
+			<key>ypos</key>
+			<real>660</real>
 		</dict>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<dict>
@@ -957,8 +1142,10 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 			<string>shortcuts_folders_keyword</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>2023.1</string>
+	<string>2023.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
