@@ -280,7 +280,7 @@
 				<key>modifiersubtext</key>
 				<string>Force Cache Update</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 		</array>
 	</dict>
