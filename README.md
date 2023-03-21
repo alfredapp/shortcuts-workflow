@@ -2,11 +2,11 @@
 
 Run installed macOS shortcuts
 
-<a href='https://alfred.app/workflows/alfredapp/shortcuts'>⤓ Install on the Alfred Gallery</a>
+[⤓ Install on the Alfred Gallery](https://alfred.app/workflows/alfredapp/shortcuts)
 
 ## Usage
 
-Search all your shortcuts via the All Shortcuts Keyword (default: `sc`) or search by folder name via the Shorcut Folders Keyword (default: `scd`).
+Search all your shortcuts via the `sc` keyword or search by folder name with `scd`.
 
 ![Alfred search for sc](Workflow/images/about/sc.png)
 
@@ -14,6 +14,8 @@ Search all your shortcuts via the All Shortcuts Keyword (default: `sc`) or searc
 * <kbd>⌘</kbd><kbd>↩&#xFE0E;</kbd>: Run the shortcut with an argument.
 * <kbd>⌥</kbd><kbd>↩&#xFE0E;</kbd>: Open the shortcut for editing.
 
-Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to give an argument.
+Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to provide an argument.
+
+![Universal Action to run shortcut](Workflow/images/about/ua.png)
 
 The list of shortcuts is cached for faster results. An immediate cache rebuild can be forced with <kbd>fn</kbd><kbd>↩&#xFE0E;</kbd>.
