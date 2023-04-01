@@ -71,19 +71,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>4997C1F9-CB10-4F2D-9932-212E11D60938</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>866AE316-D3A4-4781-8E61-4A2704FE4996</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<array>
 			<dict>
@@ -186,19 +173,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>98519D99-27D5-4D08-9AD4-4732EC78E008</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>D1F341BC-F432-4F3E-A10C-62320836FAE2</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>A4E64080-1FE3-4DC7-B236-87D07ED268B1</key>
 		<array>
 			<dict>
@@ -264,7 +238,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>98519D99-27D5-4D08-9AD4-4732EC78E008</string>
+				<string>D1F341BC-F432-4F3E-A10C-62320836FAE2</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
@@ -274,7 +248,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>4997C1F9-CB10-4F2D-9932-212E11D60938</string>
+				<string>866AE316-D3A4-4781-8E61-4A2704FE4996</string>
 				<key>modifiers</key>
 				<integer>8388608</integer>
 				<key>modifiersubtext</key>
@@ -294,47 +268,6 @@
 	<string>Shortcuts</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsfiles</key>
-				<false/>
-				<key>acceptsmulti</key>
-				<integer>0</integer>
-				<key>acceptstext</key>
-				<true/>
-				<key>acceptsurls</key>
-				<true/>
-				<key>name</key>
-				<string>Run shortcut</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.universalaction</string>
-			<key>uid</key>
-			<string>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>argument</key>
-					<string>{query}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -390,6 +323,172 @@
 			<string>alfred.workflow.automation.runshortcut</string>
 			<key>uid</key>
 			<string>BFCDF55C-5BEF-4517-BDCB-4561FFAEA81B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Run shortcut</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:input_paths}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>1</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Paths</string>
+						<key>uid</key>
+						<string>756F0559-8EAD-4114-839C-92C1EA776DFF</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>1</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Arguments</string>
+						<key>uid</key>
+						<string>05992BB6-2B0A-4367-885F-0CF4FCDED305</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>No Input</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>54C3747A-A884-4018-BAD0-8D3926DDBCE9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>inputmode</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>176F2785-CF64-434B-BA5E-B1C8896D5C01</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>json</key>
+				<string>{
+  "alfredworkflow" : {
+    "arg" : "{query}",
+    "config" : {
+      "inputmode" : "{var:inputmode}",
+      "shortcut" : "{var:shortcut}",
+      "outputmode" : 0
+    }
+  }
+}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.json</string>
+			<key>uid</key>
+			<string>25855119-4AFB-4E7F-85B6-368A1A69EB9B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>argument</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:argument}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>3DC66537-4080-4948-9659-D4295927FF6D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>inputmode</key>
+					<string>-1</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>1128D030-5A3C-43C0-8B79-84EE063E2F1C</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -595,7 +694,7 @@ function run() {
 			<key>inboundconfig</key>
 			<dict>
 				<key>externalid</key>
-				<string>list_shortcuts</string>
+				<string>show_list</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -603,6 +702,25 @@ function run() {
 			<string>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>subtext</key>
+				<string>{query}</string>
+				<key>text</key>
+				<string>Give {var:shortcut} argument</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -618,111 +736,6 @@ function run() {
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:input_paths}</string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>1</integer>
-						<key>matchstring</key>
-						<string></string>
-						<key>outputlabel</key>
-						<string>Paths</string>
-						<key>uid</key>
-						<string>756F0559-8EAD-4114-839C-92C1EA776DFF</string>
-					</dict>
-					<dict>
-						<key>inputstring</key>
-						<string></string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>1</integer>
-						<key>matchstring</key>
-						<string></string>
-						<key>outputlabel</key>
-						<string>Arguments</string>
-						<key>uid</key>
-						<string>05992BB6-2B0A-4367-885F-0CF4FCDED305</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>No Input</string>
-				<key>hideelse</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>54C3747A-A884-4018-BAD0-8D3926DDBCE9</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>inputmode</key>
-					<string>0</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>176F2785-CF64-434B-BA5E-B1C8896D5C01</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>json</key>
-				<string>{
-  "alfredworkflow" : {
-    "arg" : "{query}",
-    "config" : {
-      "inputmode" : "{var:inputmode}",
-      "shortcut" : "{var:shortcut}",
-      "outputmode" : 0
-    }
-  }
-}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.json</string>
-			<key>uid</key>
-			<string>25855119-4AFB-4E7F-85B6-368A1A69EB9B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{var:argument}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>3DC66537-4080-4948-9659-D4295927FF6D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -749,39 +762,21 @@ function run() {
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
+				<key>browser</key>
 				<string></string>
-				<key>passthroughargument</key>
+				<key>skipqueryencode</key>
 				<false/>
-				<key>variables</key>
-				<dict>
-					<key>inputmode</key>
-					<string>-1</string>
-				</dict>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>shortcuts://open-shortcut?name={var:shortcut}</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>1128D030-5A3C-43C0-8B79-84EE063E2F1C</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>{query}</string>
-				<key>text</key>
-				<string>Give {var:shortcut} argument</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
+			<string>D1F341BC-F432-4F3E-A10C-62320836FAE2</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -850,37 +845,11 @@ puts({ items: Script_filter_items }.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>skipqueryencode</key>
-				<false/>
-				<key>skipvarencode</key>
-				<false/>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>shortcuts://open-shortcut?name={var:shortcut}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>D1F341BC-F432-4F3E-A10C-62320836FAE2</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
-			<key>uid</key>
-			<string>98519D99-27D5-4D08-9AD4-4732EC78E008</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>tasksettings</key>
-				<dict/>
+				<dict>
+					<key>target_path</key>
+					<string>{const:alfred_workflow_cache}</string>
+				</dict>
 				<key>taskuid</key>
 				<string>com.alfredapp.automation.core/files-and-folders/path.trash</string>
 			</dict>
@@ -895,7 +864,7 @@ puts({ items: Script_filter_items }.to_json)</string>
 			<key>config</key>
 			<dict>
 				<key>externaltriggerid</key>
-				<string>list_shortcuts</string>
+				<string>show_list</string>
 				<key>passinputasargument</key>
 				<false/>
 				<key>passvariables</key>
@@ -907,23 +876,6 @@ puts({ items: Script_filter_items }.to_json)</string>
 			<string>alfred.workflow.output.callexternaltrigger</string>
 			<key>uid</key>
 			<string>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{const:alfred_workflow_cache}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>4997C1F9-CB10-4F2D-9932-212E11D60938</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -949,154 +901,140 @@ The list of shortcuts is cached for faster results. An immediate cache rebuild c
 		<key>1128D030-5A3C-43C0-8B79-84EE063E2F1C</key>
 		<dict>
 			<key>xpos</key>
-			<real>935</real>
+			<real>1010</real>
 			<key>ypos</key>
-			<real>305</real>
+			<real>190</real>
 		</dict>
 		<key>176F2785-CF64-434B-BA5E-B1C8896D5C01</key>
 		<dict>
 			<key>xpos</key>
-			<real>935</real>
+			<real>1010</real>
 			<key>ypos</key>
-			<real>235</real>
+			<real>120</real>
 		</dict>
 		<key>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</key>
 		<dict>
 			<key>xpos</key>
-			<real>230</real>
+			<real>255</real>
 			<key>ypos</key>
-			<real>70</real>
+			<real>120</real>
 		</dict>
 		<key>25855119-4AFB-4E7F-85B6-368A1A69EB9B</key>
 		<dict>
 			<key>xpos</key>
-			<real>1115</real>
+			<real>1190</real>
 			<key>ypos</key>
-			<real>235</real>
+			<real>120</real>
 		</dict>
 		<key>3DC66537-4080-4948-9659-D4295927FF6D</key>
 		<dict>
 			<key>note</key>
 			<string>Pass previously given argument</string>
 			<key>xpos</key>
-			<real>620</real>
+			<real>695</real>
 			<key>ypos</key>
-			<real>235</real>
-		</dict>
-		<key>4997C1F9-CB10-4F2D-9932-212E11D60938</key>
-		<dict>
-			<key>xpos</key>
-			<real>480</real>
-			<key>ypos</key>
-			<real>690</real>
+			<real>120</real>
 		</dict>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<dict>
 			<key>note</key>
 			<string>List shortcuts by folder name</string>
 			<key>xpos</key>
-			<real>50</real>
+			<real>75</real>
 			<key>ypos</key>
-			<real>370</real>
+			<real>420</real>
 		</dict>
 		<key>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</key>
 		<dict>
 			<key>xpos</key>
-			<real>765</real>
+			<real>840</real>
 			<key>ypos</key>
-			<real>660</real>
+			<real>545</real>
 		</dict>
 		<key>54C3747A-A884-4018-BAD0-8D3926DDBCE9</key>
 		<dict>
 			<key>xpos</key>
-			<real>785</real>
+			<real>860</real>
 			<key>ypos</key>
-			<real>210</real>
+			<real>95</real>
 		</dict>
 		<key>566F4FB1-471E-4356-AF50-6A47EBC49EC5</key>
 		<dict>
 			<key>xpos</key>
-			<real>1025</real>
+			<real>1100</real>
 			<key>ypos</key>
-			<real>165</real>
+			<real>50</real>
 		</dict>
 		<key>72481DFD-5DA2-4A5C-A453-FF8E93304DD5</key>
 		<dict>
 			<key>xpos</key>
-			<real>935</real>
+			<real>1010</real>
 			<key>ypos</key>
-			<real>165</real>
+			<real>50</real>
 		</dict>
 		<key>866AE316-D3A4-4781-8E61-4A2704FE4996</key>
 		<dict>
 			<key>xpos</key>
-			<real>580</real>
+			<real>655</real>
 			<key>ypos</key>
-			<real>660</real>
+			<real>545</real>
 		</dict>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<dict>
 			<key>note</key>
 			<string>Prepare argument to run shortcut</string>
 			<key>xpos</key>
-			<real>50</real>
+			<real>75</real>
 			<key>ypos</key>
-			<real>40</real>
-		</dict>
-		<key>98519D99-27D5-4D08-9AD4-4732EC78E008</key>
-		<dict>
-			<key>xpos</key>
-			<real>480</real>
-			<key>ypos</key>
-			<real>535</real>
+			<real>90</real>
 		</dict>
 		<key>A4E64080-1FE3-4DC7-B236-87D07ED268B1</key>
 		<dict>
 			<key>xpos</key>
-			<real>580</real>
+			<real>655</real>
 			<key>ypos</key>
-			<real>370</real>
+			<real>255</real>
 		</dict>
 		<key>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</key>
 		<dict>
 			<key>note</key>
 			<string>Prepare path to run shortcut</string>
 			<key>xpos</key>
-			<real>50</real>
+			<real>75</real>
 			<key>ypos</key>
-			<real>205</real>
+			<real>255</real>
 		</dict>
 		<key>BFCDF55C-5BEF-4517-BDCB-4561FFAEA81B</key>
 		<dict>
 			<key>xpos</key>
-			<real>1210</real>
+			<real>1285</real>
 			<key>ypos</key>
-			<real>205</real>
+			<real>90</real>
 		</dict>
 		<key>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</key>
 		<dict>
 			<key>xpos</key>
-			<real>230</real>
+			<real>255</real>
 			<key>ypos</key>
-			<real>235</real>
+			<real>285</real>
 		</dict>
 		<key>D1F341BC-F432-4F3E-A10C-62320836FAE2</key>
 		<dict>
 			<key>note</key>
 			<string>Edit shortcut</string>
 			<key>xpos</key>
-			<real>580</real>
+			<real>655</real>
 			<key>ypos</key>
-			<real>505</real>
+			<real>390</real>
 		</dict>
 		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
 		<dict>
 			<key>note</key>
 			<string>List all shortcuts</string>
 			<key>xpos</key>
-			<real>400</real>
+			<real>425</real>
 			<key>ypos</key>
-			<real>205</real>
+			<real>255</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
