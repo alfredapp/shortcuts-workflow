@@ -250,7 +250,7 @@
 				<key>destinationuid</key>
 				<string>866AE316-D3A4-4781-8E61-4A2704FE4996</string>
 				<key>modifiers</key>
-				<integer>8388608</integer>
+				<integer>1835008</integer>
 				<key>modifiersubtext</key>
 				<string>Force Cache Update</string>
 				<key>vitoclose</key>
@@ -895,7 +895,7 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 
 ![Universal Action to run shortcut](images/about/ua.png)
 
-The list of shortcuts is cached for faster results. An immediate cache rebuild can be forced with &lt;kbd&gt;fn&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;.</string>
+The list of shortcuts is cached for faster results. An immediate cache rebuild can be forced with &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;.</string>
 	<key>uidata</key>
 	<dict>
 		<key>1128D030-5A3C-43C0-8B79-84EE063E2F1C</key>
