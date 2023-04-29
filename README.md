@@ -18,4 +18,4 @@ Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-ac
 
 ![Universal Action to run shortcut](Workflow/images/about/ua.png)
 
-The list of shortcuts is cached for faster results. An immediate cache rebuild can be forced with <kbd>fn</kbd><kbd>↩&#xFE0E;</kbd>.
+The list of shortcuts is cached for faster results. An immediate cache rebuild can be forced with <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>↩&#xFE0E;</kbd>.
