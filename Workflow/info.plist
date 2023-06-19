@@ -563,25 +563,9 @@ function shortcutsCommand(...arguments) {
   return stringOut.split("\n").filter(line =&gt; line)
 }
 
-// Cache Helpers
-const cacheMinutes = 5
-const cachePath = `${envVar("alfred_workflow_cache")}/cache.json`
-
-function cacheExist() {
-  return $.NSFileManager.defaultManager.fileExistsAtPath(cachePath)
-}
-
-function oldCache(ttlMinutes) {
-  const ttl = ttlMinutes * 60 * 1000 // Milliseconds
-  const currentTime = new Date().getTime()
-  const cacheTime = parseInt(envVar("cache_age"))
-
-  if (ttl + cacheTime &gt; currentTime) return false
-  return true
-}
-
-function buildCache() {
-// Array of arrays, listing shortcuts and their directories
+// Cache rebuild
+function buildCache(cachePath, cacheTTLMinutes) {
+  // Array of arrays, listing shortcuts and their directories
   const shortcutsList = (function() {
     let list = []
     let uncategorised = shortcutsCommand("list")
@@ -651,13 +635,13 @@ function buildCache() {
   const nowJSON = JSON.stringify({ items: sfItems })
 
   const cacheJSON = JSON.stringify({
-    variables: { cache_age: new Date().getTime() },
+    variables: { cache_stale: new Date().getTime() + cacheTTLMinutes * 60 * 1000 },
     rerun: 0.1,
     items: sfItems
   })
 
   // Write cache
-  makeFolder(envVar("alfred_workflow_cache"))
+  makeFolder($(cachePath).stringByDeletingLastPathComponent.js)
   writeFile(cachePath, cacheJSON)
 
   // Output result
@@ -666,14 +650,19 @@ function buildCache() {
 
 // Main
 function run() {
+  const cachePath = `${envVar("alfred_workflow_cache")}/cache.json`
+  const cacheExists = $.NSFileManager.defaultManager.fileExistsAtPath(cachePath)
+  const cacheStale = parseInt(envVar("cache_stale"))
+  const cacheTTLMinutes = 5
+
   // No cache, build it
-  if (!cacheExist()) return buildCache()
+  if (!cacheExists) return buildCache(cachePath, cacheTTLMinutes)
 
   // Cache never loaded, load from disk for instant results
-  if (!envVar("cache_age")) return readFile(cachePath)
+  if (cacheStale === NaN) return readFile(cachePath)
 
   // Old cache, rebuild
-  if (oldCache(cacheMinutes)) return buildCache()
+  if (cacheStale &lt; new Date().getTime()) return buildCache(cachePath, cacheTTLMinutes)
 
   // Recent cache, load from disk
   return readFile(cachePath)
