@@ -1072,7 +1072,7 @@ The list of shortcuts is cached for faster results. An immediate cache rebuild c
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2023.6</string>
+	<string>2023.7</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/shortcuts-workflow/</string>
 </dict>
