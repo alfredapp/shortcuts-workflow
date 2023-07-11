@@ -338,7 +338,7 @@
 				<key>acceptsurls</key>
 				<true/>
 				<key>name</key>
-				<string>Run shortcut</string>
+				<string>Run Shortcut</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.universalaction</string>
@@ -719,7 +719,7 @@ function run() {
 				<key>filetypes</key>
 				<array/>
 				<key>name</key>
-				<string>Run shortcut</string>
+				<string>Run Shortcut</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.action</string>
