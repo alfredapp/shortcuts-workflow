@@ -659,7 +659,7 @@ function run() {
   if (!cacheExists) return buildCache(cachePath, cacheTTLMinutes)
 
   // Cache never loaded, load from disk for instant results
-  if (cacheStale === NaN) return readFile(cachePath)
+  if (Number.isNaN(cacheStale)) return readFile(cachePath)
 
   // Old cache, rebuild
   if (cacheStale &lt; new Date().getTime()) return buildCache(cachePath, cacheTTLMinutes)
