@@ -1,0 +1,9 @@
+name: Feature Suggestion
+description: Suggest a new feature
+body:
+  - type: textarea
+    attributes:
+      label: Feature details
+      description: Explain the feature idea
+    validations:
+      required: true
