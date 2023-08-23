@@ -16,13 +16,13 @@ body:
   - type: input
     attributes:
       label: macOS version
-      description: Click  on the menubar → About This Mac → Overview
+      description: Click  on the menubar → About This Mac
     validations:
       required: true
   - type: textarea
     attributes:
       label: Debugger output
-      description: Open the Workflow in Alfred Preferences → click the bug icon → perform the failing action
+      description: Perform the failing action with [the debugger](https://www.alfredapp.com/help/workflows/advanced/debugger/) open
       render: alfred_debugger
     validations:
       required: true
