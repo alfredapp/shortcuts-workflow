@@ -535,16 +535,11 @@ function makeFolder(path) {
 }
 
 function readFile(path) {
-  const data = $.NSFileManager.defaultManager.contentsAtPath(path)
-  const string = $.NSString.alloc.initWithDataEncoding(data, $.NSUTF8StringEncoding).js
-  return string
+  return $.NSString.stringWithContentsOfFileEncodingError(path, $.NSUTF8StringEncoding, undefined).js
 }
 
 function writeFile(path, text) {
-  $.NSString
-    .alloc
-    .initWithUTF8String(text)
-    .writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, undefined)
+  $(text).writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, undefined)
 }
 
 // Get STDOUT from command, as array split from newlines, without empty elements
@@ -552,7 +547,7 @@ function shortcutsCommand(...arguments) {
   const task = $.NSTask.alloc.init
   const stdout = $.NSPipe.pipe
 
-  task.executableURL = $.NSURL.alloc.initFileURLWithPath("/usr/bin/shortcuts")
+  task.executableURL = $.NSURL.fileURLWithPath("/usr/bin/shortcuts")
   task.arguments = arguments
   task.standardOutput = stdout
   task.launchAndReturnError(false)
