@@ -147,19 +147,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>866AE316-D3A4-4781-8E61-4A2704FE4996</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<array>
 			<dict>
@@ -245,16 +232,6 @@
 				<string>Edit Shortcut</string>
 				<key>vitoclose</key>
 				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>866AE316-D3A4-4781-8E61-4A2704FE4996</string>
-				<key>modifiers</key>
-				<integer>1835008</integer>
-				<key>modifiersubtext</key>
-				<string>Force Cache Update</string>
-				<key>vitoclose</key>
-				<true/>
 			</dict>
 		</array>
 	</dict>
@@ -525,143 +502,90 @@ function envVar(varName) {
   return $.NSProcessInfo.processInfo.environment.objectForKey(varName).js
 }
 
-function makeFolder(path) {
-  $.NSFileManager
-    .defaultManager
-    .createDirectoryAtPathWithIntermediateDirectoriesAttributesError(
-      path,
-      true, undefined, undefined
-    )
-}
-
-function readFile(path) {
-  return $.NSString.stringWithContentsOfFileEncodingError(path, $.NSUTF8StringEncoding, undefined).js
-}
-
-function writeFile(path, text) {
-  $(text).writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, undefined)
-}
-
 // Get STDOUT from command, as array split from newlines, without empty elements
-function shortcutsCommand(...arguments) {
+function linesFromCommand(arguments) {
   const task = $.NSTask.alloc.init
   const stdout = $.NSPipe.pipe
 
-  task.executableURL = $.NSURL.fileURLWithPath("/usr/bin/shortcuts")
-  task.arguments = arguments
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
+  task.arguments = arguments.slice(1)
   task.standardOutput = stdout
   task.launchAndReturnError(false)
 
-  const dataOut = stdout.fileHandleForReading.readDataToEndOfFileAndReturnError(false)
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
   const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
 
   return stringOut.split("\n").filter(line =&gt; line)
 }
 
-// Cache rebuild
-function buildCache(cachePath, cacheTTLMinutes) {
-  // Array of arrays, listing shortcuts and their directories
-  const shortcutsList = (function() {
-    let list = []
-    let uncategorised = shortcutsCommand("list")
-    const folders = shortcutsCommand("list", "--folders")
+// Array of arrays, listing shortcuts and their directories
+const shortcutsList = (function() {
+  let list = []
+  let uncategorised = linesFromCommand(["/usr/bin/shortcuts", "list"])
+  const folders = linesFromCommand(["/usr/bin/shortcuts", "list", "--folders"])
 
-    // Add shortcuts with folders to final list
-    folders
-      .forEach(folder =&gt; { // For each folder
-        shortcutsCommand("list", "--folder-name", folder)
-          .forEach(shortcut =&gt; { // For each shortcut in folder
-            uncategorised.splice(uncategorised.indexOf(shortcut), 1) // Remove from uncategorised
-            list.push([shortcut, folder])
-          })
-      })
+  // Add shortcuts with folders to final list
+  folders
+    .forEach(folder =&gt; { // For each folder
+      linesFromCommand(["/usr/bin/shortcuts", "list", "--folder-name", folder])
+        .forEach(shortcut =&gt; { // For each shortcut in folder
+          uncategorised.splice(uncategorised.indexOf(shortcut), 1) // Remove from uncategorised
+          list.push([shortcut, folder])
+        })
+    })
 
-    // Add folderless shortcuts to final list
-    uncategorised.forEach(shortcut =&gt; list.push([shortcut, ""]))
+  // Add folderless shortcuts to final list
+  uncategorised.forEach(shortcut =&gt; list.push([shortcut, ""]))
 
-    return list
+  return list
+})()
+
+// Build items
+const sfItems = shortcutsList.map(categorised =&gt; {
+  const shortcut = categorised[0]
+  const folder = categorised[1]
+
+  const inputType = (function() {
+    // If input paths have been specificed
+    const envInputPaths = envVar("input_paths")
+
+    if (envInputPaths) {
+      const inputPaths = envInputPaths.split("\t")
+      const pathsString = inputPaths.join("\n")
+
+      return {
+        subtitle: inputPaths.length &gt; 1 ? "Paths: " + pathsString : "Path: " + pathsString,
+        mods: { cmd: { valid: false, subtitle: "Input already set: " + pathsString } }
+      }
+    }
+
+    // If an argument has been specified
+    const envArgument = envVar("argument")
+
+    if (envArgument) return {
+      subtitle: "Argument: " + envArgument,
+      mods: { cmd: { valid: false, subtitle: "Input already set: " + envArgument } }
+    }
+
+    // Else return folder name and allow new arguments
+    return {
+      subtitle: folder,
+      mods: { cmd: { subtitle: "Run with argument" } }
+    }
   })()
 
-  // Build items
-  const sfItems = shortcutsList.map(categorised =&gt; {
-    const shortcut = categorised[0]
-    const folder = categorised[1]
+  return {
+    variables: { shortcut: shortcut },
+    uid: shortcut + " " + folder,
+    title: shortcut,
+    subtitle: inputType.subtitle,
+    mods: inputType.mods,
+    match: shortcut + " " + folder
+  }
+})
 
-    const inputType = (function() {
-      // If input paths have been specificed
-      const envInputPaths = envVar("input_paths")
-
-      if (envInputPaths) {
-        const inputPaths = envInputPaths.split("\t")
-        const pathsString = inputPaths.join("\n")
-
-        return {
-          subtitle: inputPaths.length &gt; 1 ? "Paths: " + pathsString : "Path: " + pathsString,
-          mods: { cmd: { valid: false, subtitle: "Input already set: " + pathsString } }
-        }
-      }
-
-      // If an argument has been specified
-      const envArgument = envVar("argument")
-
-      if (envArgument) return {
-        subtitle: "Argument: " + envArgument,
-        mods: { cmd: { valid: false, subtitle: "Input already set: " + envArgument } }
-      }
-
-      // Else return folder name and allow new arguments
-      return {
-        subtitle: folder,
-        mods: { cmd: { subtitle: "Run with argument" } }
-      }
-    })()
-
-    return {
-      variables: { shortcut: shortcut },
-      uid: shortcut + " " + folder,
-      title: shortcut,
-      subtitle: inputType.subtitle,
-      mods: inputType.mods,
-      match: shortcut + " " + folder
-    }
-  })
-
-  // Build JSONs
-  const nowJSON = JSON.stringify({ items: sfItems })
-
-  const cacheJSON = JSON.stringify({
-    variables: { cache_stale: new Date().getTime() + cacheTTLMinutes * 60 * 1000 },
-    rerun: 0.1,
-    items: sfItems
-  })
-
-  // Write cache
-  makeFolder($(cachePath).stringByDeletingLastPathComponent.js)
-  writeFile(cachePath, cacheJSON)
-
-  // Output result
-  return nowJSON
-}
-
-// Main
-function run() {
-  const cachePath = `${envVar("alfred_workflow_cache")}/cache.json`
-  const cacheExists = $.NSFileManager.defaultManager.fileExistsAtPath(cachePath)
-  const cacheStale = parseInt(envVar("cache_stale"))
-  const cacheTTLMinutes = 5
-
-  // No cache, build it
-  if (!cacheExists) return buildCache(cachePath, cacheTTLMinutes)
-
-  // Cache never loaded, load from disk for instant results
-  if (Number.isNaN(cacheStale)) return readFile(cachePath)
-
-  // Old cache, rebuild
-  if (cacheStale &lt; new Date().getTime()) return buildCache(cachePath, cacheTTLMinutes)
-
-  // Recent cache, load from disk
-  return readFile(cachePath)
-}</string>
+// Output JSON
+JSON.stringify({ items: sfItems })</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -826,43 +750,6 @@ puts({ items: Script_filter_items }.to_json)</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>tasksettings</key>
-				<dict>
-					<key>target_path</key>
-					<string>{const:alfred_workflow_cache}</string>
-				</dict>
-				<key>taskuid</key>
-				<string>com.alfredapp.automation.core/files-and-folders/path.trash</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.automation.task</string>
-			<key>uid</key>
-			<string>866AE316-D3A4-4781-8E61-4A2704FE4996</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>show_list</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<false/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Usage
@@ -877,9 +764,7 @@ Search all your shortcuts via the `sc` keyword or search by folder name with `sc
 
 Use the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to provide an argument.
 
-![Universal Action to run shortcut](images/about/ua.png)
-
-The list of shortcuts is cached for faster results. An immediate cache rebuild can be forced with &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;.</string>
+![Universal Action to run shortcut](images/about/ua.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>1128D030-5A3C-43C0-8B79-84EE063E2F1C</key>
@@ -928,13 +813,6 @@ The list of shortcuts is cached for faster results. An immediate cache rebuild c
 			<key>ypos</key>
 			<real>420</real>
 		</dict>
-		<key>508ADF6A-E5A3-45BF-84F4-FF1CA288019B</key>
-		<dict>
-			<key>xpos</key>
-			<real>840</real>
-			<key>ypos</key>
-			<real>545</real>
-		</dict>
 		<key>54C3747A-A884-4018-BAD0-8D3926DDBCE9</key>
 		<dict>
 			<key>xpos</key>
@@ -955,13 +833,6 @@ The list of shortcuts is cached for faster results. An immediate cache rebuild c
 			<real>1010</real>
 			<key>ypos</key>
 			<real>50</real>
-		</dict>
-		<key>866AE316-D3A4-4781-8E61-4A2704FE4996</key>
-		<dict>
-			<key>xpos</key>
-			<real>655</real>
-			<key>ypos</key>
-			<real>545</real>
 		</dict>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<dict>
