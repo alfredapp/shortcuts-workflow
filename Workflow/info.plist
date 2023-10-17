@@ -6,6 +6,19 @@
 	<string>com.alfredapp.vitor.shortcuts</string>
 	<key>connections</key>
 	<dict>
+		<key>0D5E4A1D-7A46-4307-9E01-471A03ACA51A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>54C3747A-A884-4018-BAD0-8D3926DDBCE9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>1128D030-5A3C-43C0-8B79-84EE063E2F1C</key>
 		<array>
 			<dict>
@@ -36,7 +49,20 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</string>
+				<string>0D5E4A1D-7A46-4307-9E01-471A03ACA51A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2214F67C-9727-44B5-85F6-8D2D2D5A88AF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>54C3747A-A884-4018-BAD0-8D3926DDBCE9</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -58,24 +84,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>3DC66537-4080-4948-9659-D4295927FF6D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>54C3747A-A884-4018-BAD0-8D3926DDBCE9</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</string>
+				<string>9EEA4EAC-B4C4-429C-87B1-6FA0006137FC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -147,6 +160,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>73523F8E-52E2-4492-B308-F3704E1956D3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>54C3747A-A884-4018-BAD0-8D3926DDBCE9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<array>
 			<dict>
@@ -160,11 +186,24 @@
 				<false/>
 			</dict>
 		</array>
+		<key>9EEA4EAC-B4C4-429C-87B1-6FA0006137FC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>A4E64080-1FE3-4DC7-B236-87D07ED268B1</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>54C3747A-A884-4018-BAD0-8D3926DDBCE9</string>
+				<string>73523F8E-52E2-4492-B308-F3704E1956D3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -192,7 +231,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</string>
+				<string>0D5E4A1D-7A46-4307-9E01-471A03ACA51A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -205,7 +244,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3DC66537-4080-4948-9659-D4295927FF6D</string>
+				<string>2214F67C-9727-44B5-85F6-8D2D2D5A88AF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -327,6 +366,71 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Getting shortcuts…</string>
+				<key>script</key>
+				<string>const allShortcuts = Application("Shortcuts Events").shortcuts()
+
+const sfItems = allShortcuts.map(shortcut =&gt; {
+  if (!shortcut.acceptsInput()) return null
+
+  const name = shortcut.name()
+  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No folder]"
+
+  return {
+    variables: { shortcut: name },
+    uid: name + " " + folder,
+    title: name,
+    subtitle: folder,
+    match: name + " " + folder
+  }
+}).filter(shortcut =&gt; shortcut)
+
+// Output JSON
+JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>List shortcuts with input</string>
+				<key>title</key>
+				<string>Shortcuts with Input</string>
+				<key>type</key>
+				<integer>7</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>0D5E4A1D-7A46-4307-9E01-471A03ACA51A</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -345,7 +449,7 @@
 					</dict>
 					<dict>
 						<key>inputstring</key>
-						<string></string>
+						<string>{var:argument}</string>
 						<key>matchcasesensitive</key>
 						<false/>
 						<key>matchmode</key>
@@ -374,7 +478,7 @@
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string>{var:argument}</string>
 				<key>passthroughargument</key>
 				<false/>
 				<key>variables</key>
@@ -436,7 +540,7 @@
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{var:argument}</string>
+				<string></string>
 				<key>passthroughargument</key>
 				<false/>
 				<key>variables</key>
@@ -445,7 +549,7 @@
 			<key>type</key>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>3DC66537-4080-4948-9659-D4295927FF6D</string>
+			<string>2214F67C-9727-44B5-85F6-8D2D2D5A88AF</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -497,95 +601,27 @@
 				<key>runningsubtext</key>
 				<string>Getting shortcuts…</string>
 				<key>script</key>
-				<string>// Helpers
-function envVar(varName) {
-  return $.NSProcessInfo.processInfo.environment.objectForKey(varName).js
-}
+				<string>const allShortcuts = Application("Shortcuts Events").shortcuts()
 
-// Get STDOUT from command, as array split from newlines, without empty elements
-function linesFromCommand(...arguments) {
-  const task = $.NSTask.alloc.init
-  const stdout = $.NSPipe.pipe
-
-  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
-  task.arguments = arguments.slice(1)
-  task.standardOutput = stdout
-  task.launchAndReturnError(false)
-
-  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
-  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
-
-  return stringOut.split("\n").filter(line =&gt; line)
-}
-
-// Array of arrays, listing shortcuts and their directories
-const shortcutsList = (function() {
-  let list = []
-  let uncategorised = linesFromCommand("/usr/bin/shortcuts", "list")
-  const folders = linesFromCommand("/usr/bin/shortcuts", "list", "--folders")
-
-  // Add shortcuts with folders to final list
-  folders
-    .forEach(folder =&gt; { // For each folder
-      linesFromCommand("/usr/bin/shortcuts", "list", "--folder-name", folder)
-        .forEach(shortcut =&gt; { // For each shortcut in folder
-          uncategorised.splice(uncategorised.indexOf(shortcut), 1) // Remove from uncategorised
-          list.push([shortcut, folder])
-        })
-    })
-
-  // Add folderless shortcuts to final list
-  uncategorised.forEach(shortcut =&gt; list.push(shortcut, ""))
-
-  return list
-})()
-
-// Build items
-const sfItems = shortcutsList.map(categorised =&gt; {
-  const shortcut = categorised[0]
-  const folder = categorised[1]
-
-  const inputType = (function() {
-    // If input paths have been specificed
-    const envInputPaths = envVar("input_paths")
-
-    if (envInputPaths) {
-      const inputPaths = envInputPaths.split("\t")
-      const pathsString = inputPaths.join("\n")
-
-      return {
-        subtitle: inputPaths.length &gt; 1 ? "Paths: " + pathsString : "Path: " + pathsString,
-        mods: { cmd: { valid: false, subtitle: "Input already set: " + pathsString } }
-      }
-    }
-
-    // If an argument has been specified
-    const envArgument = envVar("argument")
-
-    if (envArgument) return {
-      subtitle: "Argument: " + envArgument,
-      mods: { cmd: { valid: false, subtitle: "Input already set: " + envArgument } }
-    }
-
-    // Else return folder name and allow new arguments
-    return {
-      subtitle: folder,
-      mods: { cmd: { subtitle: "Run with argument" } }
-    }
-  })()
+const sfItems = allShortcuts.map(shortcut =&gt; {
+  const name = shortcut.name()
+  const folder = shortcut.folder.exists() ? shortcut.folder.name() : ""
+  const inputMod = shortcut.acceptsInput() ?
+    { subtitle: "Run with argument", valid: true } :
+    { subtitle: "Shortcut does not accept input", valid: false }
 
   return {
-    variables: { shortcut: shortcut },
-    uid: shortcut + " " + folder,
-    title: shortcut,
-    subtitle: inputType.subtitle,
-    mods: inputType.mods,
-    match: shortcut + " " + folder
+    variables: { shortcut: name },
+    uid: name + " " + folder,
+    title: name,
+    subtitle: folder,
+    mods: { cmd: inputMod },
+    match: name + " " + folder
   }
 })
 
 // Output JSON
-JSON.stringify({ items: sfItems })</string>
+JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -639,6 +675,26 @@ JSON.stringify({ items: sfItems })</string>
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>argument</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>73523F8E-52E2-4492-B308-F3704E1956D3</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -758,6 +814,14 @@ JSON.stringify({ items: sfItems })</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>9EEA4EAC-B4C4-429C-87B1-6FA0006137FC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Usage
@@ -770,45 +834,56 @@ Search all your shortcuts via the `sc` keyword or search by folder name with `sc
 * &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Run the shortcut with an argument.
 * &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Open the shortcut for editing.
 
-Use the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to provide an argument.
+Use the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/) to run the shortcut on files or as another way to provide an argument. Only shortcuts which accept input will be listed.
 
 ![Universal Action to run shortcut](images/about/ua.png)</string>
 	<key>uidata</key>
 	<dict>
+		<key>0D5E4A1D-7A46-4307-9E01-471A03ACA51A</key>
+		<dict>
+			<key>note</key>
+			<string>List shortcuts which accept input</string>
+			<key>xpos</key>
+			<real>425</real>
+			<key>ypos</key>
+			<real>90</real>
+		</dict>
 		<key>1128D030-5A3C-43C0-8B79-84EE063E2F1C</key>
 		<dict>
 			<key>xpos</key>
-			<real>1010</real>
+			<real>1095</real>
 			<key>ypos</key>
 			<real>190</real>
 		</dict>
 		<key>176F2785-CF64-434B-BA5E-B1C8896D5C01</key>
 		<dict>
 			<key>xpos</key>
-			<real>1010</real>
+			<real>1095</real>
 			<key>ypos</key>
 			<real>120</real>
 		</dict>
 		<key>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</key>
 		<dict>
+			<key>note</key>
+			<string>Set argument variable</string>
 			<key>xpos</key>
 			<real>255</real>
 			<key>ypos</key>
 			<real>120</real>
 		</dict>
+		<key>2214F67C-9727-44B5-85F6-8D2D2D5A88AF</key>
+		<dict>
+			<key>note</key>
+			<string>Empty argument</string>
+			<key>xpos</key>
+			<real>695</real>
+			<key>ypos</key>
+			<real>170</real>
+		</dict>
 		<key>25855119-4AFB-4E7F-85B6-368A1A69EB9B</key>
 		<dict>
 			<key>xpos</key>
-			<real>1190</real>
-			<key>ypos</key>
-			<real>120</real>
-		</dict>
-		<key>3DC66537-4080-4948-9659-D4295927FF6D</key>
-		<dict>
-			<key>note</key>
-			<string>Pass previously given argument</string>
-			<key>xpos</key>
-			<real>695</real>
+			<real>1275</real>
 			<key>ypos</key>
 			<real>120</real>
 		</dict>
@@ -824,23 +899,32 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 		<key>54C3747A-A884-4018-BAD0-8D3926DDBCE9</key>
 		<dict>
 			<key>xpos</key>
-			<real>860</real>
+			<real>945</real>
 			<key>ypos</key>
 			<real>95</real>
 		</dict>
 		<key>566F4FB1-471E-4356-AF50-6A47EBC49EC5</key>
 		<dict>
 			<key>xpos</key>
-			<real>1100</real>
+			<real>1185</real>
 			<key>ypos</key>
 			<real>50</real>
 		</dict>
 		<key>72481DFD-5DA2-4A5C-A453-FF8E93304DD5</key>
 		<dict>
 			<key>xpos</key>
-			<real>1010</real>
+			<real>1095</real>
 			<key>ypos</key>
 			<real>50</real>
+		</dict>
+		<key>73523F8E-52E2-4492-B308-F3704E1956D3</key>
+		<dict>
+			<key>note</key>
+			<string>Set argument variable</string>
+			<key>xpos</key>
+			<real>835</real>
+			<key>ypos</key>
+			<real>285</real>
 		</dict>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<dict>
@@ -851,8 +935,17 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<key>ypos</key>
 			<real>90</real>
 		</dict>
+		<key>9EEA4EAC-B4C4-429C-87B1-6FA0006137FC</key>
+		<dict>
+			<key>xpos</key>
+			<real>255</real>
+			<key>ypos</key>
+			<real>450</real>
+		</dict>
 		<key>A4E64080-1FE3-4DC7-B236-87D07ED268B1</key>
 		<dict>
+			<key>note</key>
+			<string>Ask for argument</string>
 			<key>xpos</key>
 			<real>655</real>
 			<key>ypos</key>
@@ -870,12 +963,14 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 		<key>BFCDF55C-5BEF-4517-BDCB-4561FFAEA81B</key>
 		<dict>
 			<key>xpos</key>
-			<real>1285</real>
+			<real>1370</real>
 			<key>ypos</key>
 			<real>90</real>
 		</dict>
 		<key>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</key>
 		<dict>
+			<key>note</key>
+			<string>Set paths variable</string>
 			<key>xpos</key>
 			<real>255</real>
 			<key>ypos</key>
@@ -888,7 +983,7 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<key>xpos</key>
 			<real>655</real>
 			<key>ypos</key>
-			<real>390</real>
+			<real>420</real>
 		</dict>
 		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
 		<dict>
