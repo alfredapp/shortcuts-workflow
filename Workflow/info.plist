@@ -503,7 +503,7 @@ function envVar(varName) {
 }
 
 // Get STDOUT from command, as array split from newlines, without empty elements
-function linesFromCommand(arguments) {
+function linesFromCommand(...arguments) {
   const task = $.NSTask.alloc.init
   const stdout = $.NSPipe.pipe
 
@@ -521,13 +521,13 @@ function linesFromCommand(arguments) {
 // Array of arrays, listing shortcuts and their directories
 const shortcutsList = (function() {
   let list = []
-  let uncategorised = linesFromCommand(["/usr/bin/shortcuts", "list"])
-  const folders = linesFromCommand(["/usr/bin/shortcuts", "list", "--folders"])
+  let uncategorised = linesFromCommand("/usr/bin/shortcuts", "list")
+  const folders = linesFromCommand("/usr/bin/shortcuts", "list", "--folders")
 
   // Add shortcuts with folders to final list
   folders
     .forEach(folder =&gt; { // For each folder
-      linesFromCommand(["/usr/bin/shortcuts", "list", "--folder-name", folder])
+      linesFromCommand("/usr/bin/shortcuts", "list", "--folder-name", folder)
         .forEach(shortcut =&gt; { // For each shortcut in folder
           uncategorised.splice(uncategorised.indexOf(shortcut), 1) // Remove from uncategorised
           list.push([shortcut, folder])
@@ -535,7 +535,7 @@ const shortcutsList = (function() {
     })
 
   // Add folderless shortcuts to final list
-  uncategorised.forEach(shortcut =&gt; list.push([shortcut, ""]))
+  uncategorised.forEach(shortcut =&gt; list.push(shortcut, ""))
 
   return list
 })()
@@ -598,11 +598,6 @@ JSON.stringify({ items: sfItems })</string>
 				<integer>7</integer>
 				<key>withspace</key>
 				<true/>
-			</dict>
-			<key>inboundconfig</key>
-			<dict>
-				<key>externalid</key>
-				<string>show_list</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -714,22 +709,35 @@ JSON.stringify({ items: sfItems })</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Getting shortcuts…</string>
+				<string>Getting shortcuts folders…</string>
 				<key>script</key>
-				<string>require 'json'
-require 'open3'
+				<string>// Helpers
+// Get STDOUT from command, as array split from newlines, without empty elements
+function linesFromCommand(...arguments) {
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
 
-Folders = Open3.capture2('/usr/bin/shortcuts', 'list', '--folders').first.split("\n")
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
+  task.arguments = arguments.slice(1)
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
 
-Script_filter_items = Folders.each_with_object([]) { |folder, array|
-  array.push(
-    uid: folder,
-    title: folder,
-    arg: "#{folder} "
-  )
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
+
+  return stringOut.split("\n").filter(line =&gt; line)
 }
 
-puts({ items: Script_filter_items }.to_json)</string>
+// Main
+const folders = linesFromCommand("/usr/bin/shortcuts", "list", "--folders")
+
+const sfItems = folders.map(folder =&gt; ({
+  uid: folder,
+  title: folder,
+  arg: folder + " "
+}))
+
+JSON.stringify({ items: sfItems })</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -739,7 +747,7 @@ puts({ items: Script_filter_items }.to_json)</string>
 				<key>title</key>
 				<string>Shortcuts Folders</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>7</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
