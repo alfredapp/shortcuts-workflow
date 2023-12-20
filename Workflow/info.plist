@@ -407,7 +407,7 @@ const sfItems = allShortcuts.map(shortcut =&gt; {
 }).filter(shortcut =&gt; shortcut)
 
 // Output JSON
-JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
+JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -478,6 +478,26 @@ JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>argument</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
 				<string>{var:argument}</string>
 				<key>passthroughargument</key>
 				<false/>
@@ -524,26 +544,6 @@ JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
 				<key>passthroughargument</key>
 				<false/>
 				<key>variables</key>
-				<dict>
-					<key>argument</key>
-					<string>{query}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
 				<dict/>
 			</dict>
 			<key>type</key>
@@ -570,6 +570,25 @@ JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>1128D030-5A3C-43C0-8B79-84EE063E2F1C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>subtext</key>
+				<string>{query}</string>
+				<key>text</key>
+				<string>Give {var:shortcut} argument</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -621,7 +640,7 @@ const sfItems = allShortcuts.map(shortcut =&gt; {
 })
 
 // Output JSON
-JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
+JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -641,25 +660,6 @@ JSON.stringify({ cache: { minutes: 5 }, items: sfItems })</string>
 			<string>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>{query}</string>
-				<key>text</key>
-				<string>Give {var:shortcut} argument</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>A4E64080-1FE3-4DC7-B236-87D07ED268B1</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
