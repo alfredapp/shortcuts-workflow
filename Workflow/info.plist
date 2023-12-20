@@ -45,6 +45,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>1C952188-0253-48CC-A123-97E3EA3DC504</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9EEA4EAC-B4C4-429C-87B1-6FA0006137FC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</key>
 		<array>
 			<dict>
@@ -822,11 +835,42 @@ JSON.stringify({ items: sfItems })</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>1C952188-0253-48CC-A123-97E3EA3DC504</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Usage
 
-Search all your shortcuts via the `sc` keyword or search by folder name with `scd`.
+Search all your shortcuts via the `sc` keyword or search by folder name with `scd`. Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/) for faster triggering of the former.
 
 ![Alfred search for sc](images/about/sc.png)
 
@@ -861,6 +905,15 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<real>1095</real>
 			<key>ypos</key>
 			<real>120</real>
+		</dict>
+		<key>1C952188-0253-48CC-A123-97E3EA3DC504</key>
+		<dict>
+			<key>note</key>
+			<string>List all shortcuts</string>
+			<key>xpos</key>
+			<real>80</real>
+			<key>ypos</key>
+			<real>585</real>
 		</dict>
 		<key>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</key>
 		<dict>
