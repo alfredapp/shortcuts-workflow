@@ -277,7 +277,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>D1F341BC-F432-4F3E-A10C-62320836FAE2</string>
+				<string>CF364E2A-1603-41C0-8A74-CFF9ADC072F7</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
@@ -734,27 +734,6 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>skipqueryencode</key>
-				<false/>
-				<key>skipvarencode</key>
-				<false/>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>shortcuts://open-shortcut?name={var:shortcut}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>D1F341BC-F432-4F3E-A10C-62320836FAE2</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -826,6 +805,24 @@ JSON.stringify({ items: sfItems })</string>
 			<string>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>tasksettings</key>
+				<dict>
+					<key>target_shortcut</key>
+					<string>{var:shortcut}</string>
+				</dict>
+				<key>taskuid</key>
+				<string>com.alfredapp.automation.core/shortcuts/shortcut.view</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.automation.task</string>
+			<key>uid</key>
+			<string>CF364E2A-1603-41C0-8A74-CFF9ADC072F7</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>type</key>
@@ -1020,6 +1017,15 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<key>ypos</key>
 			<real>90</real>
 		</dict>
+		<key>CF364E2A-1603-41C0-8A74-CFF9ADC072F7</key>
+		<dict>
+			<key>note</key>
+			<string>Edit shortcut</string>
+			<key>xpos</key>
+			<real>655</real>
+			<key>ypos</key>
+			<real>420</real>
+		</dict>
 		<key>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</key>
 		<dict>
 			<key>note</key>
@@ -1028,15 +1034,6 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<real>255</real>
 			<key>ypos</key>
 			<real>285</real>
-		</dict>
-		<key>D1F341BC-F432-4F3E-A10C-62320836FAE2</key>
-		<dict>
-			<key>note</key>
-			<string>Edit shortcut</string>
-			<key>xpos</key>
-			<real>655</real>
-			<key>ypos</key>
-			<real>420</real>
 		</dict>
 		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
 		<dict>
