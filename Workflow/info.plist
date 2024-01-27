@@ -1064,7 +1064,7 @@ The list of shortcuts is cached for faster results. An immediate cache rebuild c
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Shorcut Folders Keyword</string>
+			<string>Shortcut Folders Keyword</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
