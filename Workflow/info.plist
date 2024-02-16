@@ -425,6 +425,8 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>List shortcuts with input</string>
 				<key>title</key>
@@ -591,6 +593,8 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>{query}</string>
 				<key>text</key>
@@ -658,6 +662,8 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>List all shortcuts</string>
 				<key>title</key>
@@ -790,6 +796,8 @@ JSON.stringify({ items: sfItems })</string>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>List shortcuts folders</string>
 				<key>title</key>
