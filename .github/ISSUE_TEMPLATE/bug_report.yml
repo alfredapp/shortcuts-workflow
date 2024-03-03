@@ -4,7 +4,7 @@ body:
   - type: input
     attributes:
       label: Workflow version
-      description: Open the Workflow in Alfred Preferences → click [𝒙] → About this Workflow → Workflow Version
+      description: Open the Workflow in Alfred Preferences and find it at the top, near the description
     validations:
       required: true
   - type: input
