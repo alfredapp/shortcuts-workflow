@@ -107,7 +107,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<true/>
+				<false/>
 			</dict>
 		</array>
 		<key>54C3747A-A884-4018-BAD0-8D3926DDBCE9</key>
@@ -196,7 +196,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 		</array>
 		<key>9EEA4EAC-B4C4-429C-87B1-6FA0006137FC</key>
@@ -235,7 +235,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 		</array>
 		<key>BFCDF55C-5BEF-4517-BDCB-4561FFAEA81B</key>
@@ -402,13 +402,25 @@
 				<key>runningsubtext</key>
 				<string>Getting shortcuts…</string>
 				<key>script</key>
-				<string>const allShortcuts = Application("Shortcuts Events").shortcuts()
+				<string>// Helpers
+function envVar(varName) {
+  return $.NSProcessInfo
+    .processInfo
+    .environment
+    .objectForKey(varName).js
+}
 
-const sfItems = allShortcuts.map(shortcut =&gt; {
-  if (!shortcut.acceptsInput()) return null
+// Main
+const allShortcuts = Application("Shortcuts Events").shortcuts()
+const ignoredFolders = envVar("ignored_folders").split("\n")
+
+const sfItems = allShortcuts.flatMap(shortcut =&gt; {
+  if (!shortcut.acceptsInput()) return []
 
   const name = shortcut.name()
-  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No folder]"
+  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No Folder]"
+
+  if (ignoredFolders.find(folderName =&gt; folderName === folder)) return []
 
   return {
     variables: { shortcut: name },
@@ -417,7 +429,7 @@ const sfItems = allShortcuts.map(shortcut =&gt; {
     subtitle: folder,
     match: name + " " + folder
   }
-}).filter(shortcut =&gt; shortcut)
+})
 
 // Output JSON
 JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
@@ -637,11 +649,24 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 				<key>runningsubtext</key>
 				<string>Getting shortcuts…</string>
 				<key>script</key>
-				<string>const allShortcuts = Application("Shortcuts Events").shortcuts()
+				<string>// Helpers
+function envVar(varName) {
+  return $.NSProcessInfo
+    .processInfo
+    .environment
+    .objectForKey(varName).js
+}
 
-const sfItems = allShortcuts.map(shortcut =&gt; {
+// Main
+const allShortcuts = Application("Shortcuts Events").shortcuts()
+const ignoredFolders = envVar("ignored_folders").split("\n")
+
+const sfItems = allShortcuts.flatMap(shortcut =&gt; {
   const name = shortcut.name()
-  const folder = shortcut.folder.exists() ? shortcut.folder.name() : ""
+  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No Folder]"
+
+  if (ignoredFolders.find(folderName =&gt; folderName === folder)) return []
+
   const inputMod = shortcut.acceptsInput() ?
     { subtitle: "Run with argument", valid: true } :
     { subtitle: "Shortcut does not accept input", valid: false }
@@ -766,32 +791,30 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 				<string>Getting shortcuts folders…</string>
 				<key>script</key>
 				<string>// Helpers
-// Get STDOUT from command, as array split from newlines, without empty elements
-function linesFromCommand(...arguments) {
-  const task = $.NSTask.alloc.init
-  const stdout = $.NSPipe.pipe
-
-  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
-  task.arguments = arguments.slice(1)
-  task.standardOutput = stdout
-  task.launchAndReturnError(false)
-
-  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
-  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
-
-  return stringOut.split("\n").filter(line =&gt; line)
+function envVar(varName) {
+  return $.NSProcessInfo
+    .processInfo
+    .environment
+    .objectForKey(varName).js
 }
 
 // Main
-const folders = linesFromCommand("/usr/bin/shortcuts", "list", "--folders")
+const allShortcuts = Application("Shortcuts Events").shortcuts()
+const ignoredFolders = envVar("ignored_folders").split("\n")
+const folderless = allShortcuts.find(shortcut =&gt; !shortcut.folder.exists()) ? "[No Folder]" : []
+const folderNames = Application("Shortcuts Events")
+  .folders.name()
+  .concat(folderless)
+  .filter(folder =&gt; !ignoredFolders.includes(folder))
 
-const sfItems = folders.map(folder =&gt; ({
+const sfItems = folderNames.map(folder =&gt; ({
   uid: folder,
   title: folder,
   arg: folder + " "
 }))
 
-JSON.stringify({ items: sfItems })</string>
+// Output JSON
+JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -916,7 +939,7 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<key>note</key>
 			<string>List all shortcuts</string>
 			<key>xpos</key>
-			<real>80</real>
+			<real>75</real>
 			<key>ypos</key>
 			<real>585</real>
 		</dict>
@@ -1097,7 +1120,30 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<key>variable</key>
 			<string>shortcuts_folders_keyword</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+				<key>verticalsize</key>
+				<integer>6</integer>
+			</dict>
+			<key>description</key>
+			<string>Newline-separared list of Folders to hide in lists.</string>
+			<key>label</key>
+			<string>Ignored Folders</string>
+			<key>type</key>
+			<string>textarea</string>
+			<key>variable</key>
+			<string>ignored_folders</string>
+		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
 	<string>2024.1</string>
 	<key>webaddress</key>
