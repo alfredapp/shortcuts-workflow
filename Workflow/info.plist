@@ -107,7 +107,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 		</array>
 		<key>54C3747A-A884-4018-BAD0-8D3926DDBCE9</key>
