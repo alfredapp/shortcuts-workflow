@@ -1,6 +1,13 @@
 name: Feature Suggestion
 description: Suggest a new feature
 body:
+  - type: checkboxes
+    attributes:
+      label: "Frequently Asked Questions"
+      description: Please be sure to consult the FAQ, as most problems and advanced features are covered there.
+      options:
+        - label: I have [read the FAQ](../blob/main/FAQ.md) before opening the issue.
+          required: true
   - type: textarea
     attributes:
       label: Feature details
