@@ -10,15 +10,9 @@ If you don’t see any result with the workflow and the [debugger](https://www.a
 
 You bumped into a known bug with the Shortcuts app. Look at your list of Shortcuts and you’re likely to find two or more shortcuts with the same name (usually `New Shortcut 1` or similar). Delete the duplicates and try again. Rebooting your Mac is sometimes necessary.
 
-### How do I report a different issue?
+### How do I report an issue?
 
-Accurate and thorough information is crucial for a proper diagnosis. When reporting issues, please include your *exact* installed versions of:
+Accurate and thorough information is crucial for a proper diagnosis. **At a minimum, your report should include:**
 
-* The Workflow.
-* Alfred.
-* macOS.
-
-In addition to:
-
-* The [debugger](https://www.alfredapp.com/help/workflows/advanced/debugger/) output. Perform the failing action and click *Copy* on the top right.
-* Details on what you did, what happened, and what you expected to happen. A [short video](https://support.apple.com/en-us/HT208721) of the steps with the debugger open may help to find the problem faster.
+* The [debugger](https://www.alfredapp.com/help/workflows/advanced/debugger/) output of the failing action.
+* Your installed versions of: the Workflow, Alfred, and macOS. *Be precise, don’t say “latest”.*
