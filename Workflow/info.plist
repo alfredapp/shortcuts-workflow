@@ -1133,7 +1133,7 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 				<integer>6</integer>
 			</dict>
 			<key>description</key>
-			<string>Newline-separared list of Folders to hide in lists.</string>
+			<string>Newline-separared list of folders to hide in lists.</string>
 			<key>label</key>
 			<string>Ignored Folders</string>
 			<key>type</key>
@@ -1142,8 +1142,6 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<string>ignored_folders</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
 	<string>2024.3</string>
 	<key>webaddress</key>
