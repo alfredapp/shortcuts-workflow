@@ -6,7 +6,7 @@ body:
       label: "Frequently Asked Questions"
       description: Please be sure to consult the FAQ, as most problems and advanced features are covered there.
       options:
-        - label: I have [read the FAQ](../blob/main/FAQ.md) before opening the issue.
+        - label: I have [read the FAQ](https://github.com/alfredapp/shortcuts-workflow/blob/main/FAQ.md) before opening the issue.
           required: true
   - type: textarea
     attributes:
