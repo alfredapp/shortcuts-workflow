@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.alfredapp.vitor.shortcuts</string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>0D5E4A1D-7A46-4307-9E01-471A03ACA51A</key>
@@ -649,40 +651,93 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 				<key>runningsubtext</key>
 				<string>Getting shortcuts…</string>
 				<key>script</key>
-				<string>// Helpers
+				<string>ObjC.import("Foundation")
+
+// Helpers
 function envVar(varName) {
-  return $.NSProcessInfo
-    .processInfo
-    .environment
-    .objectForKey(varName).js
+  const value = $.NSProcessInfo.processInfo.environment.objectForKey(varName)
+  return value ? ObjC.unwrap(value) : ""
 }
 
-// Main
-const allShortcuts = Application("Shortcuts Events").shortcuts()
-const ignoredFolders = envVar("ignored_folders").split("\n")
+function safeName(obj, fallback = "") {
+  try {
+    return obj.name()
+  } catch (_) {
+    return fallback
+  }
+}
 
-const sfItems = allShortcuts.flatMap(shortcut =&gt; {
-  const name = shortcut.name()
-  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No Folder]"
+function safeFolderName(shortcut) {
+  try {
+    const folder = shortcut.folder()
+    if (folder &amp;&amp; folder.exists()) return folder.name()
+  } catch (_) {}
+  return "[No Folder]"
+}
 
-  if (ignoredFolders.find(folderName =&gt; folderName === folder)) return []
+function shortcutItem(shortcut, ignoredFolders) {
+  const name = safeName(shortcut)
+  const folder = safeFolderName(shortcut)
 
-  const inputMod = shortcut.acceptsInput() ?
-    { subtitle: "Run with argument", valid: true } :
-    { subtitle: "Shortcut does not accept input", valid: false }
+  if (!name) return null
+  if (ignoredFolders.includes(folder)) return null
+
+  let acceptsInput = false
+  try {
+    acceptsInput = shortcut.acceptsInput()
+  } catch (_) {}
+
+  const inputMod = acceptsInput
+    ? { subtitle: "Run with argument", valid: true }
+    : { subtitle: "Shortcut does not accept input", valid: false }
 
   return {
     variables: { shortcut: name },
-    uid: name + " " + folder,
+    uid: `${name} ${folder}`,
     title: name,
     subtitle: folder,
     mods: { cmd: inputMod },
-    match: name + " " + folder
+    match: `${name} ${folder}`
   }
-})
+}
 
-// Output JSON
-JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
+const app = Application("Shortcuts Events")
+const ignoredFolders = envVar("ignored_folders")
+  .split("\n")
+  .map(s =&gt; s.trim())
+  .filter(Boolean)
+
+const seen = new Set()
+const items = []
+
+function addShortcut(shortcut) {
+  const item = shortcutItem(shortcut, ignoredFolders)
+  if (!item) return
+
+  const key = item.uid
+  if (seen.has(key)) return
+  seen.add(key)
+  items.push(item)
+}
+
+// 1) Root/all shortcuts exposed directly by the app
+try {
+  app.shortcuts().forEach(addShortcut)
+} catch (_) {}
+
+// 2) Explicitly enumerate folders and their shortcuts
+try {
+  app.folders().forEach(folder =&gt; {
+    try {
+      folder.shortcuts().forEach(addShortcut)
+    } catch (_) {}
+  })
+} catch (_) {}
+
+JSON.stringify({
+  cache: { seconds: 300, loosereload: true },
+  items
+})</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -878,8 +933,6 @@ JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
