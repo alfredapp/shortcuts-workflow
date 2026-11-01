@@ -409,18 +409,21 @@ function envVar(varName) {
     .environment
     .objectForKey(varName).js
 }
-
-// Main
-const allShortcuts = Application("Shortcuts Events").shortcuts()
+// Main (batched Apple events: fetch all shortcuts' data in 3 Apple events
+// instead of one per property per shortcut — ~0.15s instead of ~10s with
+// hundreds of shortcuts)
+const app = Application("Shortcuts Events")
+const names = app.shortcuts.name()
+const folders = app.shortcuts.folder.name()
+const accepts = app.shortcuts.acceptsInput()
 const ignoredFolders = envVar("ignored_folders").split("\n")
 
-const sfItems = allShortcuts.flatMap(shortcut =&gt; {
-  if (!shortcut.acceptsInput()) return []
+const sfItems = names.flatMap((name, i) =&gt; {
+  if (!accepts[i]) return []
 
-  const name = shortcut.name()
-  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No Folder]"
+  const folder = folders[i] == null ? "[No Folder]" : String(folders[i])
 
-  if (ignoredFolders.find(folderName =&gt; folderName === folder)) return []
+  if (ignoredFolders.includes(folder)) return []
 
   return {
     variables: { shortcut: name },
@@ -432,7 +435,8 @@ const sfItems = allShortcuts.flatMap(shortcut =&gt; {
 })
 
 // Output JSON
-JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
+JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -656,18 +660,21 @@ function envVar(varName) {
     .environment
     .objectForKey(varName).js
 }
-
-// Main
-const allShortcuts = Application("Shortcuts Events").shortcuts()
+// Main (batched Apple events: fetch all shortcuts' data in 3 Apple events
+// instead of one per property per shortcut — ~0.15s instead of ~10s with
+// hundreds of shortcuts)
+const app = Application("Shortcuts Events")
+const names = app.shortcuts.name()
+const folders = app.shortcuts.folder.name()
+const accepts = app.shortcuts.acceptsInput()
 const ignoredFolders = envVar("ignored_folders").split("\n")
 
-const sfItems = allShortcuts.flatMap(shortcut =&gt; {
-  const name = shortcut.name()
-  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No Folder]"
+const sfItems = names.flatMap((name, i) =&gt; {
+  const folder = folders[i] == null ? "[No Folder]" : String(folders[i])
 
-  if (ignoredFolders.find(folderName =&gt; folderName === folder)) return []
+  if (ignoredFolders.includes(folder)) return []
 
-  const inputMod = shortcut.acceptsInput() ?
+  const inputMod = accepts[i] ?
     { subtitle: "Run with argument", valid: true } :
     { subtitle: "Shortcut does not accept input", valid: false }
 
@@ -682,7 +689,8 @@ const sfItems = allShortcuts.flatMap(shortcut =&gt; {
 })
 
 // Output JSON
-JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
+JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -798,23 +806,25 @@ function envVar(varName) {
     .objectForKey(varName).js
 }
 
-// Main
-const allShortcuts = Application("Shortcuts Events").shortcuts()
+// Main (batched Apple events: ~0.15s instead of ~10s)
+const app = Application("Shortcuts Events")
+const folderNames = app.folders.name()
+const shortcutFolders = app.shortcuts.folder.name()
+const folderless = shortcutFolders.some(f =&gt; f == null) ? "[No Folder]" : []
 const ignoredFolders = envVar("ignored_folders").split("\n")
-const folderless = allShortcuts.find(shortcut =&gt; !shortcut.folder.exists()) ? "[No Folder]" : []
-const folderNames = Application("Shortcuts Events")
-  .folders.name()
+
+const sfItems = folderNames
   .concat(folderless)
   .filter(folder =&gt; !ignoredFolders.includes(folder))
-
-const sfItems = folderNames.map(folder =&gt; ({
-  uid: folder,
-  title: folder,
-  arg: folder + " "
-}))
+  .map(folder =&gt; ({
+    uid: folder,
+    title: folder,
+    arg: folder + " "
+  }))
 
 // Output JSON
-JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })</string>
+JSON.stringify({ cache: { seconds: 300, loosereload: true }, items: sfItems })
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -916,164 +926,164 @@ Use the [Universal Action](https://www.alfredapp.com/help/features/universal-act
 			<key>note</key>
 			<string>List shortcuts which accept input</string>
 			<key>xpos</key>
-			<real>425</real>
+			<real>425.0</real>
 			<key>ypos</key>
-			<real>90</real>
+			<real>90.0</real>
 		</dict>
 		<key>1128D030-5A3C-43C0-8B79-84EE063E2F1C</key>
 		<dict>
 			<key>xpos</key>
-			<real>1095</real>
+			<real>1095.0</real>
 			<key>ypos</key>
-			<real>190</real>
+			<real>190.0</real>
 		</dict>
 		<key>176F2785-CF64-434B-BA5E-B1C8896D5C01</key>
 		<dict>
 			<key>xpos</key>
-			<real>1095</real>
+			<real>1095.0</real>
 			<key>ypos</key>
-			<real>120</real>
+			<real>120.0</real>
 		</dict>
 		<key>1C952188-0253-48CC-A123-97E3EA3DC504</key>
 		<dict>
 			<key>note</key>
 			<string>List all shortcuts</string>
 			<key>xpos</key>
-			<real>75</real>
+			<real>75.0</real>
 			<key>ypos</key>
-			<real>585</real>
+			<real>585.0</real>
 		</dict>
 		<key>1DFB80A0-3BC8-4D10-B25F-5738F65D531B</key>
 		<dict>
 			<key>note</key>
 			<string>Set argument variable</string>
 			<key>xpos</key>
-			<real>255</real>
+			<real>255.0</real>
 			<key>ypos</key>
-			<real>120</real>
+			<real>120.0</real>
 		</dict>
 		<key>2214F67C-9727-44B5-85F6-8D2D2D5A88AF</key>
 		<dict>
 			<key>note</key>
 			<string>Empty argument</string>
 			<key>xpos</key>
-			<real>695</real>
+			<real>695.0</real>
 			<key>ypos</key>
-			<real>170</real>
+			<real>170.0</real>
 		</dict>
 		<key>25855119-4AFB-4E7F-85B6-368A1A69EB9B</key>
 		<dict>
 			<key>xpos</key>
-			<real>1275</real>
+			<real>1275.0</real>
 			<key>ypos</key>
-			<real>120</real>
+			<real>120.0</real>
 		</dict>
 		<key>4CA0F7EA-3AF3-48FB-9F9A-AEF9797EDC3B</key>
 		<dict>
 			<key>note</key>
 			<string>List shortcuts by folder name</string>
 			<key>xpos</key>
-			<real>75</real>
+			<real>75.0</real>
 			<key>ypos</key>
-			<real>420</real>
+			<real>420.0</real>
 		</dict>
 		<key>54C3747A-A884-4018-BAD0-8D3926DDBCE9</key>
 		<dict>
 			<key>xpos</key>
-			<real>945</real>
+			<real>945.0</real>
 			<key>ypos</key>
-			<real>95</real>
+			<real>95.0</real>
 		</dict>
 		<key>566F4FB1-471E-4356-AF50-6A47EBC49EC5</key>
 		<dict>
 			<key>xpos</key>
-			<real>1185</real>
+			<real>1185.0</real>
 			<key>ypos</key>
-			<real>50</real>
+			<real>50.0</real>
 		</dict>
 		<key>72481DFD-5DA2-4A5C-A453-FF8E93304DD5</key>
 		<dict>
 			<key>xpos</key>
-			<real>1095</real>
+			<real>1095.0</real>
 			<key>ypos</key>
-			<real>50</real>
+			<real>50.0</real>
 		</dict>
 		<key>73523F8E-52E2-4492-B308-F3704E1956D3</key>
 		<dict>
 			<key>note</key>
 			<string>Set argument variable</string>
 			<key>xpos</key>
-			<real>835</real>
+			<real>835.0</real>
 			<key>ypos</key>
-			<real>285</real>
+			<real>285.0</real>
 		</dict>
 		<key>8AD8B6B2-7CFD-4111-B81C-69158A3E4D4C</key>
 		<dict>
 			<key>note</key>
 			<string>Prepare argument to run shortcut</string>
 			<key>xpos</key>
-			<real>75</real>
+			<real>75.0</real>
 			<key>ypos</key>
-			<real>90</real>
+			<real>90.0</real>
 		</dict>
 		<key>9EEA4EAC-B4C4-429C-87B1-6FA0006137FC</key>
 		<dict>
 			<key>xpos</key>
-			<real>255</real>
+			<real>255.0</real>
 			<key>ypos</key>
-			<real>450</real>
+			<real>450.0</real>
 		</dict>
 		<key>A4E64080-1FE3-4DC7-B236-87D07ED268B1</key>
 		<dict>
 			<key>note</key>
 			<string>Ask for argument</string>
 			<key>xpos</key>
-			<real>655</real>
+			<real>655.0</real>
 			<key>ypos</key>
-			<real>255</real>
+			<real>255.0</real>
 		</dict>
 		<key>B6B11028-3EFA-4B12-A13A-D2E45B31EEDB</key>
 		<dict>
 			<key>note</key>
 			<string>Prepare path to run shortcut</string>
 			<key>xpos</key>
-			<real>75</real>
+			<real>75.0</real>
 			<key>ypos</key>
-			<real>255</real>
+			<real>255.0</real>
 		</dict>
 		<key>BFCDF55C-5BEF-4517-BDCB-4561FFAEA81B</key>
 		<dict>
 			<key>xpos</key>
-			<real>1370</real>
+			<real>1370.0</real>
 			<key>ypos</key>
-			<real>90</real>
+			<real>90.0</real>
 		</dict>
 		<key>CF364E2A-1603-41C0-8A74-CFF9ADC072F7</key>
 		<dict>
 			<key>note</key>
 			<string>Edit shortcut</string>
 			<key>xpos</key>
-			<real>655</real>
+			<real>655.0</real>
 			<key>ypos</key>
-			<real>420</real>
+			<real>420.0</real>
 		</dict>
 		<key>CFFE2B9A-5D09-42D3-AA37-04D143AD527C</key>
 		<dict>
 			<key>note</key>
 			<string>Set paths variable</string>
 			<key>xpos</key>
-			<real>255</real>
+			<real>255.0</real>
 			<key>ypos</key>
-			<real>285</real>
+			<real>285.0</real>
 		</dict>
 		<key>EE84DB71-9CAA-4783-BFE6-528D7F1D1D47</key>
 		<dict>
 			<key>note</key>
 			<string>List all shortcuts</string>
 			<key>xpos</key>
-			<real>425</real>
+			<real>425.0</real>
 			<key>ypos</key>
-			<real>255</real>
+			<real>255.0</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
