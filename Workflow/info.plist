@@ -412,7 +412,7 @@ function envVar(varName) {
 
 // Main
 const ignoredFolders = envVar("ignored_folders").split("\n")
-const shortcuts = Application("Shortcuts Events").shortcuts
+const shortcuts = Application("com.apple.shortcuts.events").shortcuts
 const names = shortcuts.name()
 const folderNames = shortcuts.folder.name()
 const acceptsInputs = shortcuts.acceptsInput()
@@ -663,7 +663,7 @@ function envVar(varName) {
 
 // Main
 const ignoredFolders = envVar("ignored_folders").split("\n")
-const shortcuts = Application("Shortcuts Events").shortcuts
+const shortcuts = Application("com.apple.shortcuts.events").shortcuts
 const names = shortcuts.name()
 const folderNames = shortcuts.folder.name()
 const acceptsInputs = shortcuts.acceptsInput()
@@ -806,7 +806,7 @@ function envVar(varName) {
 
 // Main
 const ignoredFolders = envVar("ignored_folders").split("\n")
-const shortcuts = Application("Shortcuts Events").shortcuts
+const shortcuts = Application("com.apple.shortcuts.events").shortcuts
 const folderNames = Array.from(new Set(shortcuts.folder.name()))
 const folderless = folderNames.some(folderName =&gt; !folderName) ? "[No Folder]" : []
 const folders = folderNames.concat(folderless)
