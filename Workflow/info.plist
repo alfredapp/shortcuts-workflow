@@ -411,16 +411,20 @@ function envVar(varName) {
 }
 
 // Main
-const allShortcuts = Application("Shortcuts Events").shortcuts()
 const ignoredFolders = envVar("ignored_folders").split("\n")
+const shortcuts = Application("Shortcuts Events").shortcuts
+const names = shortcuts.name()
+const folderNames = shortcuts.folder.name()
+const acceptsInputs = shortcuts.acceptsInput()
 
-const sfItems = allShortcuts.flatMap(shortcut =&gt; {
-  if (!shortcut.acceptsInput()) return []
 
-  const name = shortcut.name()
-  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No Folder]"
+const sfItems = acceptsInputs.flatMap((acceptsInput, index) =&gt; {
+  if (!acceptsInput) return []
 
-  if (ignoredFolders.find(folderName =&gt; folderName === folder)) return []
+  const folder = folderNames[index] || "[No Folder]"
+  if (ignoredFolders.find(ignoredFolder =&gt; ignoredFolder === folder)) return []
+
+  const name = names[index]
 
   return {
     variables: { shortcut: name },
@@ -658,16 +662,18 @@ function envVar(varName) {
 }
 
 // Main
-const allShortcuts = Application("Shortcuts Events").shortcuts()
 const ignoredFolders = envVar("ignored_folders").split("\n")
+const shortcuts = Application("Shortcuts Events").shortcuts
+const names = shortcuts.name()
+const folderNames = shortcuts.folder.name()
+const acceptsInputs = shortcuts.acceptsInput()
 
-const sfItems = allShortcuts.flatMap(shortcut =&gt; {
-  const name = shortcut.name()
-  const folder = shortcut.folder.exists() ? shortcut.folder.name() : "[No Folder]"
+const sfItems = folderNames.flatMap((folderName, index) =&gt; {
+  if (ignoredFolders.find(ignoredFolder =&gt; ignoredFolder === folderName)) return []
 
-  if (ignoredFolders.find(folderName =&gt; folderName === folder)) return []
-
-  const inputMod = shortcut.acceptsInput() ?
+  const name = names[index]
+  const folder = folderName || "[No Folder]"
+  const inputMod = acceptsInputs[index] ?
     { subtitle: "Run with argument", valid: true } :
     { subtitle: "Shortcut does not accept input", valid: false }
 
@@ -799,15 +805,13 @@ function envVar(varName) {
 }
 
 // Main
-const allShortcuts = Application("Shortcuts Events").shortcuts()
 const ignoredFolders = envVar("ignored_folders").split("\n")
-const folderless = allShortcuts.find(shortcut =&gt; !shortcut.folder.exists()) ? "[No Folder]" : []
-const folderNames = Application("Shortcuts Events")
-  .folders.name()
-  .concat(folderless)
-  .filter(folder =&gt; !ignoredFolders.includes(folder))
+const shortcuts = Application("Shortcuts Events").shortcuts
+const folderNames = Array.from(new Set(shortcuts.folder.name()))
+const folderless = folderNames.some(folderName =&gt; !folderName) ? "[No Folder]" : []
+const folders = folderNames.concat(folderless)
 
-const sfItems = folderNames.map(folder =&gt; ({
+const sfItems = folders.map(folder =&gt; ({
   uid: folder,
   title: folder,
   arg: folder + " "
